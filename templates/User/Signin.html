@@ -1,0 +1,22 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'User/css/signin.css' %}"/>
+
+<div id="SignIn">
+  <div class="bg"></div>
+    <form class="form-signin" method="post" action="/api/signin/">
+      {% csrf_token %}
+    	<h1 class="h3 mb-3 font-weight-bold">SIGN IN</h1>
+        <span style="color:rgb(200, 200, 200);">────────  or  ───────</span>
+      	<label for="inputEmail" class="sr-only">Email address</label>
+      	<input type="text" class="form-control signin-email mt-3" placeholder="이메일 주소" name="email" required="">
+      	<label for="inputPassword" class="sr-only">Password</label>
+      	<input type="password" name="password" class="form-control signin-pass mt-3" placeholder="비밀번호" required="">
+            
+      	<button class="btn btn-md btn-primary btn-block mt-3 signin-btn" type="submit">로그인</button>
+            <div><p class="mb-0 mt-5">아직 회원이 아니신가요?</p></div>
+            <button class="btn btn-md btn-secondary btn-block signup-btn" type="button">회원가입</button>
+    </form>
+</div>
+
+<script type="text/javascript" src="{% static 'User/js/signin.js' %}"></script>

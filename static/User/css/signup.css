@@ -1,0 +1,99 @@
+#SignUp{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.4);
+    text-align: center!important;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 100%;
+    height:100%;
+    z-index: 100;
+    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-shadow: none;
+    /*transition: 1s;*/
+} 
+#SignUp .form-signup {
+    width: 100%;
+    max-width: 330px;
+    padding: 40px 20px;
+    border-radius: 10px;
+    margin: auto;
+    background: rgb(245, 245, 245);
+    z-index: 10;
+}
+#SignUp .bg{
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+#SignUp .btn-signup{
+    border-radius: 20px !important;
+    background: rgb(3, 169, 244) !important;
+    border-color: rgb(3, 169, 244) !important;
+}
+input[name=gender]{
+    display: none;
+}
+.btn-gender{
+    background: rgb(255,255,255);
+    border-radius: .25rem !important;
+    border-color: rgb(206, 212, 218);
+    color:rgb(73, 80, 87);
+}
+.btn-gender.active{
+    background: rgb(255,255,255) !important;
+    border-color: rgb(3, 169, 244)!important;
+    color:rgb(73, 80, 87) !important;
+}
+.female{
+    width: 49% !important;
+    margin-right: 1% !important;
+}
+.male{
+    width: 49% !important;
+    margin-left: 1% !important;
+}
+@media (min-width: 0px) and (max-width: 500px){
+    .form-signup{
+        width: 90% !important;
+        padding: 10px 10px !important;
+    }
+    .form-signup p{
+        margin-top: 25px !important;
+    }
+}
+
+.form-signup h1, .form-signup a, .form-signup label, .form-signup p{
+    color: rgb(50,50,50);
+}
+.btn-primary:hover{
+    background-color: rgb(3, 169, 244);
+    border-color: rgb(3, 169, 244);
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    background-color: rgb(3, 169, 244);
+    border-color: rgb(3, 169, 244);
+}
+
+.btn-validate{
+    font-size: 14px;
+    width: 120px;
+    border-radius: .25rem !important;
+    background:rgb(84, 91, 98);
+    border-color:rgb(84, 91, 98);
+}
+.btn-validate:hover, .btn-validate:active{
+    background:rgb(50, 50, 50) !important;
+    border-color:rgb(50, 50, 50) !important;
+}
+.btn-validate:focus{
+    box-shadow:none !important;
+}
+.btn-validate.disabled{
+    background:rgb(50, 50, 50);
+    border-color:rgb(50, 50, 50);
+    color: rgb(150, 150, 150);
+}

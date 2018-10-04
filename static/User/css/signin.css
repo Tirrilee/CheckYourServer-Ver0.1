@@ -1,0 +1,76 @@
+#SignIn{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.4);
+    text-align: center!important;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 100%;
+    height:100%;
+    z-index: 100;
+    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-shadow: none;
+    /*transition: 1s;*/
+} 
+#SignIn .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 40px 20px;
+    border-radius: 10px;
+    margin: auto;
+    background: rgb(245, 245, 245);
+    z-index: 10;
+}
+#SignIn .bg{
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+#SignIn .btn{
+    border-radius: 20px !important;
+}
+.signin-pass{
+    border-radius: 20px !important;
+}
+.signin-email{
+    border-radius: 20px !important;
+}
+.signin-btn{
+    background: rgb(3, 169, 244);
+    border: 1px solid rgb(3, 169, 244);
+}
+.signin-btn:hover{
+    background:rgb(2, 152, 219);
+    border: 1px solid rgb(2, 152, 219);
+}
+.signup-btn{
+    color: rgb(84, 91, 98);
+    border: 1px solid rgb(206, 212, 218);
+    background: rgb(255, 255, 255);
+}
+.signup-btn:hover{
+    color: rgb(255,255,255);
+    background-color: rgb(84, 91, 98);
+    border-color: rgb(84, 91, 98);
+}
+.login-statable{
+    width: 95%;
+    margin: auto;
+    height: 20px;
+}
+
+@media (min-width: 0px) and (max-width: 500px){
+    .form-signin{
+        width: 90% !important;
+        padding: 10px 10px !important;
+    }
+    .form-signin p{
+        margin-top: 25px !important;
+    }
+}
+.form-signin h1, .form-signin a, .form-signin label, .form-signin p{
+    color: rgb(50,50,50);
+}
