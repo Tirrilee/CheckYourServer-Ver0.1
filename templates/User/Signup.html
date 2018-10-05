@@ -1,6 +1,15 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'User/css/signup.css' %}"/>
+<!--<link rel="stylesheet" type="text/css" href="{% static 'Base/css/jquery.dd.css' %}" />-->
+<!--<script src="{% static 'Base/js/jquery-1.9.0.min.js' %}"></script>-->
+<!--<script src="{% static 'Base/js/jquery.dd.min.js' %}"></script>-->
 
+
+<style>
+      img.fnone{
+            width:30px;
+      }
+</style>
 <div id="SignUp">
       <div class="bg"></div>
 	  <form class="form-signup" method="post" action="/api/signup/">
@@ -11,10 +20,14 @@
             <input type="email" class="form-control mb-1" placeholder="example@gmail.com" name="email" required="">
             <input type="password" name="password" class="form-control mb-1" placeholder="비밀번호" required="">
             <input type="number" name="birth" class="form-control mb-1" placeholder="주민등록번호 앞 6자리" maxlength="6" required="">
-            <input type="number" name="phone" class="form-control mb-1" placeholder="휴대폰" required="">
+
             <div class="btn-group w-100">
-                  <input type="number" name="phone" class="form-control mb-1" placeholder="인증번호" required="">
-                  <button class="btn btn-md btn-primary btn-block btn-validate mb-1 ml-1" type="button" onclick="Validate()">인증번호</button>
+                  {% include './Dropdown.html' %}
+                  <input type="number" name="phone" class="form-control mb-1 ml-1" placeholder="휴대폰" required="">
+            </div>
+            <div class="btn-group w-100">
+                  <input type="number" name="phone" class="form-control mb-1" placeholder="인증번호입력" required="">
+                  <button class="btn btn-md btn-primary btn-block btn-validate mb-1 ml-1" type="button" onclick="Validate()">인증번호발송</button>
             </div>
             <button class="btn btn-md btn-primary btn-block mt-3 btn-signup" type="submit">회원가입</button>
       </form>
@@ -32,4 +45,9 @@
                   console.log("문자전송")
             }
       }
+</script>
+<script>
+      $(document).ready(function(e) {
+
+      });
 </script>
