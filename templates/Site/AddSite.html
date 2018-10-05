@@ -1,0 +1,68 @@
+{% include './_iamport.html' %}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<style>
+	.modal{
+		text-shadow: none;
+		color: black;
+	}
+	.modal-dialog{
+		margin: auto;
+		width: 90%;
+	}
+	.btn-primary{
+	    background: rgb(16, 56, 148);
+	    border: 1px solid rgb(16, 56, 148);
+	}
+	.modal button{
+		margin: auto;
+	}
+</style>
+<!-- Modal -->
+<div id="AddSite" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Check Your Site</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" name="name" class="form-control mt-3" placeholder="Site Name" required="">
+        <input type="text" name="url" class="form-control mt-3" placeholder="Site URL" required="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="getMerchantUid()">Add Site</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+	// merchant_uid
+	function getMerchantUid(){
+		var name = $('#AddSite input[name=name]').val()
+		var url = $('#AddSite input[name=url]').val()
+		console.log(name)
+		console.log(url)
+		$.ajax({
+            type: "POST",
+            url: "{% url 'API:merchant_uid' %}",
+            data: {
+				'name': name,
+				'url': url,
+				'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            dataType: "json",
+            success: function(response){
+              	console.log(response)
+              	if (response.status=="error"){
+              		alert(response.message)
+              	}
+              	Payment(response.data)
+            },
+              	error: function(request, status, error){
+            },
+      	});
+	}
+</script>

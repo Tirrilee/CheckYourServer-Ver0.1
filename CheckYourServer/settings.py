@@ -127,3 +127,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+IAMPORT_SHOP_ID = "imp25493368"
+IAMPORT_API_KEY = '2441521571623838'
+IAMPORT_API_SECRET = 'RcsJaYHoo9AYmJv6Ubli0E9icAhxWWpO8SxiQeHfoidK1IRWUdeURod4YuBVr1JzTgSKvz0TRdETWvPR'

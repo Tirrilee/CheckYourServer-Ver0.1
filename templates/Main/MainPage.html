@@ -6,7 +6,24 @@
     <h1 class="cover-heading">Is Your Site Down?</h1>
     <p class="lead">Get notified when your website is down and track response times.</p>
     <p class="lead">
-        <a href="#" class="btn btn-lg btn-secondary">Get Start</a>
+        <a href="#" class="btn btn-lg btn-secondary" onclick="AddSite()">Add Site</a>
     </p>
 </main>
+
+
+{% if user.is_authenticated %}
+<script>
+	function AddSite(){
+		$('#AddSite').modal('show')
+	}
+</script>
+{% else %}
+<script>
+	function AddSite(){
+		$('#SignIn').css("display", "flex").hide().fadeIn( 500 );
+	}
+</script>
+{% endif %}
+
+{% include '../Site/AddSite.html' %}
 {% endblock %}

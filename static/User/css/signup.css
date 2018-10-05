@@ -31,8 +31,8 @@
 }
 #SignUp .btn-signup{
     border-radius: 20px !important;
-    background: rgb(3, 169, 244) !important;
-    border-color: rgb(3, 169, 244) !important;
+    background: rgb(16, 56, 148) !important;
+    border-color: rgb(16, 56, 148) !important;
 }
 input[name=gender]{
     display: none;
@@ -45,7 +45,7 @@ input[name=gender]{
 }
 .btn-gender.active{
     background: rgb(255,255,255) !important;
-    border-color: rgb(3, 169, 244)!important;
+    border-color: rgb(16, 56, 148)!important;
     color:rgb(73, 80, 87) !important;
 }
 .female{
@@ -70,12 +70,12 @@ input[name=gender]{
     color: rgb(50,50,50);
 }
 .btn-primary:hover{
-    background-color: rgb(3, 169, 244);
-    border-color: rgb(3, 169, 244);
+    background: rgb(16, 56, 148);
+    border: 1px solid rgb(16, 56, 148);
 }
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
-    background-color: rgb(3, 169, 244);
-    border-color: rgb(3, 169, 244);
+    background: rgb(16, 56, 148);
+    border: 1px solid rgb(16, 56, 148);
 }
 
 .btn-validate{

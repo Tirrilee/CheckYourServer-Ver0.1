@@ -4,17 +4,48 @@
 
 <div id="SignIn">
     <div class="bg"></div>
-    <form class="form-signin" method="post" action="/api/signin/">
+    <div class="form-signin">
         {% csrf_token %}
         <h1 class="h3 mb-3 font-weight-bold">SIGN IN</h1>
         <span style="color:rgb(200, 200, 200);">────────  or  ───────</span>
-        <input type="text" class="form-control signin-email mt-3" placeholder="이메일 주소" name="email" required="">
-        <input type="password" name="password" class="form-control signin-pass mt-3" placeholder="비밀번호" required="">
+        <div class="alert alert-danger text-left" role="alert" style="display: none"></div>
+        <input type="text" class="form-control signin-email mt-3" placeholder="example@gmail.com" name="email" required="">
+        <input type="password" name="password" class="form-control signin-pass mt-3" placeholder="password" required="">
 
-        <button class="btn btn-md btn-primary btn-block mt-3 signin-btn" type="submit">로그인</button>
-        <div><p class="mb-0 mt-5">아직 회원이 아니신가요?</p></div>
-        <button class="btn btn-md btn-secondary btn-block signup-btn" type="button">회원가입</button>
-    </form>
+        <button class="btn btn-md btn-primary btn-block mt-3 signin-btn" type="button" onclick="Signin()">Sign In</button>
+        <div><p class="mb-0 mt-5">Create New Account?</p></div>
+        <button class="btn btn-md btn-secondary btn-block signup-btn" type="button">Sign Up</button>
+    </div>
 </div>
 
 <script type="text/javascript" src="{% static 'User/js/signin.js' %}"></script>
+<script>
+    function Signin(){
+        var email = $("#SignIn input[name=email]").val()
+        var password = $("#SignIn input[name=password]").val()
+        $.ajax({
+            type: "POST",
+            url: "{% url 'API:signin' %}",
+            data: {
+                'email': email,
+                'password':password,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            dataType: "json",
+            success: function(response){
+                console.log(response)
+                if(response.status == "success"){
+                    location.href="{% url 'App:home' %}"
+                }
+                else{
+                    $('.alert').css('display', 'none')
+                    $('.alert').empty()
+                    $('.alert-danger').css('display', 'block')
+                    $('.alert-danger').append(response.message)
+                }
+            },
+            error: function(request, status, error){
+            },
+        })
+    }
+</script>

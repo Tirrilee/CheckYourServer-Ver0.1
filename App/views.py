@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.conf import settings
 from .models import *
 # Create your views here.
 
@@ -6,6 +7,7 @@ def MainPage(request):
     nations = Nation.objects.all()
     return render(request, 'Main/MainPage.html', {
         'nations': nations,
+        'iamport_shop_id': settings.IAMPORT_SHOP_ID,
     })
 
 def CallcodeInput(request):

@@ -1,9 +1,5 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'User/css/signup.css' %}"/>
-<!--<link rel="stylesheet" type="text/css" href="{% static 'Base/css/jquery.dd.css' %}" />-->
-<!--<script src="{% static 'Base/js/jquery-1.9.0.min.js' %}"></script>-->
-<!--<script src="{% static 'Base/js/jquery.dd.min.js' %}"></script>-->
-
 
 <style>
       img.fnone{
@@ -12,25 +8,26 @@
 </style>
 <div id="SignUp">
       <div class="bg"></div>
-	  <form class="form-signup" method="post" action="/api/signup/">
+	  <div class="form-signup">
             {% csrf_token %}
             <h1 class="h3 mb-3 font-weight-bold">SIGN UP</h1>
             <span style="color:rgb(200, 200, 200);">───────────────</span>
-
-            <input type="email" class="form-control mb-1" placeholder="example@gmail.com" name="email" required="">
-            <input type="password" name="password" class="form-control mb-1" placeholder="비밀번호" required="">
-            <input type="number" name="birth" class="form-control mb-1" placeholder="주민등록번호 앞 6자리" maxlength="6" required="">
+            <div class="alert alert-danger text-left" role="alert" style="display: none"></div>
+            <input type="text" class="form-control mb-1" placeholder="example@gmail.com" name="email" required="">
+            <input type="password" name="password" class="form-control mb-1" placeholder="password" required="">
+            <input type="password" name="password2" class="form-control mb-1" placeholder="password confirm" required="">
+            <input type="number" name="birth" class="form-control mb-1" placeholder="birth(ex:950225)" maxlength="6" required="">
 
             <div class="btn-group w-100">
                   {% include './Dropdown.html' %}
-                  <input type="number" name="phone" class="form-control mb-1 ml-1" placeholder="휴대폰" required="">
+                  <input type="number" name="phone" class="form-control mb-1 ml-1" placeholder="phone" required="">
             </div>
             <div class="btn-group w-100">
-                  <input type="number" name="phone" class="form-control mb-1" placeholder="인증번호입력" required="">
-                  <button class="btn btn-md btn-primary btn-block btn-validate mb-1 ml-1" type="button" onclick="Validate()">인증번호발송</button>
+                  <input type="number" name="code" class="form-control mb-1" placeholder="valification code" required="">
+                  <button class="btn btn-md btn-primary btn-block btn-validate m b-1 ml-1" type="button" onclick="Validate()">Send</button>
             </div>
-            <button class="btn btn-md btn-primary btn-block mt-3 btn-signup" type="submit">회원가입</button>
-      </form>
+            <button class="btn btn-md btn-primary btn-block mt-3 btn-signup" type="button" onclick="Signup()">Sign Up</button>
+      </div>
 </div>
 
 <script type="text/javascript" src="{% static 'User/js/signin.js' %}"></script>
@@ -42,12 +39,61 @@
             }
             else{
                   $(".btn-validate").addClass('disabled')
-                  console.log("문자전송")
+                  var country = $(".dropdown__select-wrap span").text().slice(1,)
+                  var number = $("input[name=phone]").val()
+                  $.ajax({
+                        type: "POST",
+                        url: "{% url 'API:sms-validation' %}",
+                        data: {
+                              'number': number,
+                              'country': country,
+                              'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        },
+                        dataType: "json",
+                        success: function(response){
+                              console.log(response)
+                        },
+                              error: function(request, status, error){
+                        },
+                  });
             }
       }
 </script>
 <script>
-      $(document).ready(function(e) {
-
-      });
+      function Signup(){
+            var email = $("#SignUp input[name=email]").val()
+            var password = $("#SignUp input[name=password]").val()
+            var password2 = $("#SignUp input[name=password2]").val()
+            var birth = $("#SignUp input[name=birth]").val()
+            var number = $("#SignUp input[name=phone]").val()
+            var code = $("#SignUp input[name=code]").val()
+            $.ajax({
+                  type: "POST",
+                  url: "{% url 'API:signup' %}",
+                  data: {
+                        'email': email,
+                        'password':password,
+                        'password2': password2,
+                        'birth':birth,
+                        'number': number,
+                        'code':code,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                  },
+                  dataType: "json",
+                  success: function(response){
+                        console.log(response)
+                        if(response.status == "success"){
+                              location.href="{% url 'App:home' %}"
+                        }
+                        else{
+                              $('.alert').css('display', 'none')
+                              $('.alert').empty() 
+                              $('.alert-danger').css('display', 'block')
+                              $('.alert-danger').append(response.message)
+                        }
+                  },
+                        error: function(request, status, error){
+                  },
+            });
+      }
 </script>

@@ -1,0 +1,40 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script id="iamport-script"> 
+	function Payment(params) {    
+        var params = params
+        IMP.init("imp25493368")
+        IMP.request_pay(params, function(response_data){        
+            if (response_data.success) {            
+                console.log(response_data)  
+                SiteUpdate(response_data.merchant_uid, response_data.imp_uid, response_data.status)     
+            }        
+            else{
+                console.log(response_data) 
+            }
+        })
+	}
+</script>
+<script>
+    function SiteUpdate(merchant_uid, imp_uid, status){
+        $.ajax({
+            type: "POST",
+            url: "{% url 'API:site_update' %}",
+            data: {
+                'merchant_uid': merchant_uid,
+                'imp_uid': imp_uid,
+                'status': status,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            dataType: "json",
+            success: function(response){
+                console.log(response)
+                if (response.status=="success") {
+                    location.reload()
+                }
+            },
+                error: function(request, status, error){
+            },
+        });
+    }
+</script>

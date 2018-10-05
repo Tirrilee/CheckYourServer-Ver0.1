@@ -39,12 +39,12 @@
     border-radius: 20px !important;
 }
 .signin-btn{
-    background: rgb(3, 169, 244);
-    border: 1px solid rgb(3, 169, 244);
+    background: rgb(16, 56, 148);
+    border: 1px solid rgb(16, 56, 148);
 }
 .signin-btn:hover{
-    background:rgb(2, 152, 219);
-    border: 1px solid rgb(2, 152, 219);
+    background:rgb(16, 56, 148);
+    border: 1px solid rgb(16, 56, 148);
 }
 .signup-btn{
     color: rgb(84, 91, 98);
