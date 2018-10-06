@@ -30,11 +30,15 @@ def getMerchantUid(request):
             context = getContext("error", "This site is already added.")
             return HttpResponse(json.dumps(context), content_type="application/json")
     data = {
+        'pg': "html5_inicis.INIBillTst",
         'merchant_uid': str(site.merchant_uid),
+        'customer_uid': str(site.customer_uid),
         'name': str(site.name),
         'amount': 500,
+        'pay_method': 'card',
         'buyer_email': request.user.username,
-        'buyer_name': request.user.username
+        'buyer_name': request.user.username,
+        #'buyer_tel': request.user.,
     }
     context = getContext("success", "Get Merchant Uid.", data)
 

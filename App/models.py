@@ -57,6 +57,7 @@ class Site(models.Model):
     name = models.CharField(max_length=32, verbose_name="사이트명")
     url = models.CharField(max_length=255, verbose_name="사이트URL")
     merchant_uid = models.UUIDField(default=uuid4, editable=False)
+    customer_uid = models.UUIDField(default=uuid4, editable=False)
     imp_uid = models.CharField(max_length=100, blank=True)
     status = models.CharField(max_length=9, choices=STATUS_CHOICES, default="ready", verbose_name="상태")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="주문일자")
