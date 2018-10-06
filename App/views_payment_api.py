@@ -19,6 +19,7 @@ iamport = Iamport(imp_key=settings.IAMPORT_API_KEY, imp_secret=settings.IAMPORT_
 def getMerchantUid(request):
     name = request.POST.get('name', None)
     url = request.POST.get('url', None)
+    profile = UserProfile.objects.get(user=request.user)
     try:
         site = Site.objects.get(user=request.user, url=url, status='ready')
         site.name = name
@@ -30,15 +31,15 @@ def getMerchantUid(request):
             context = getContext("error", "This site is already added.")
             return HttpResponse(json.dumps(context), content_type="application/json")
     data = {
-        'pg': "html5_inicis.INIBillTst",
+        'pg': 'html5_inicis.INIBillTst',
+        'pay_method': 'card',
         'merchant_uid': str(site.merchant_uid),
         'customer_uid': str(site.customer_uid),
         'name': str(site.name),
         'amount': 500,
-        'pay_method': 'card',
         'buyer_email': request.user.username,
         'buyer_name': request.user.username,
-        #'buyer_tel': request.user.,
+        'buyer_tel': profile.phone
     }
     context = getContext("success", "Get Merchant Uid.", data)
 
