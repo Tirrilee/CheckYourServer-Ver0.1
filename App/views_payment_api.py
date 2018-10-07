@@ -91,7 +91,7 @@ def CallbackAPI(request):
         imp_uid2 = request.body
     except:
         imp_uid2 = None
-    context = getContext("success", "성공", {'imp_uid':imp_uid, 'imp_uid2':type(imp_uid2),})
+    context = getContext("success", "성공", {'imp_uid':str(imp_uid), 'imp_uid2':str(type(imp_uid2))})
     # return HttpResponse(json.dumps(context), content_type="application/json")
     return Response(context, status=status.HTTP_201_CREATED)
 
