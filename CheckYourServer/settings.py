@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import djcelery
+
+djcelery.setup_loader()
+BROKER_URL = 'django://'
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_crontab',
+    'kombu.transport.django',
     'rest_framework',
     'App',
 ]
@@ -107,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -134,7 +139,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 IAMPORT_SHOP_ID = "imp25493368"
 IAMPORT_API_KEY = '2441521571623838'
 IAMPORT_API_SECRET = 'RcsJaYHoo9AYmJv6Ubli0E9icAhxWWpO8SxiQeHfoidK1IRWUdeURod4YuBVr1JzTgSKvz0TRdETWvPR'
-
-CRONJOBS = [
-    ('*/5 * * * *', 'App.task.my_scheduled_job')
-]
