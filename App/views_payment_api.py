@@ -105,8 +105,8 @@ def PaymentAPI(request):
 @api_view(['POST'])
 def CallbackAPI(request):
     client_ip = getClientIP(request)
-    if not client_ip=="52.78.100.19" or not client_ip=="52.78.48.223":
-        context = getContext("error", "잘못된 접근입니다.")
+    if not client_ip=="52.78.100.19" or client_ip=="52.78.48.223":
+        context = getContext("error", "잘못된 접근입니다.", {"ip":client_ip})
         return Response(context)
 
     imp_uid = json.loads(request.body)["imp_uid"]
