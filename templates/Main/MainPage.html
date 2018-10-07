@@ -12,11 +12,19 @@
 
 
 {% if user.is_authenticated %}
-<script>
-	function AddSite(){
-		$('#AddSite').modal('show')
-	}
-</script>
+	{% if user.profile.billing %}
+			<script>
+				function AddSite(){
+					$('#AddSite').modal('show')
+				}
+			</script>
+        {% else %}
+            <script>
+            	function AddSite(){
+					$('#Billing').modal('show')
+				}
+            </script>
+        {% endif %}
 {% else %}
 <script>
 	function AddSite(){

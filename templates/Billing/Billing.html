@@ -1,0 +1,108 @@
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<style>
+	.modal{
+		text-shadow: none;
+		color: black;
+	}
+	.modal-dialog{
+		margin: auto;
+		width: 90%;
+	}
+	.btn-primary{
+	    background: rgb(16, 56, 148);
+	    border: 1px solid rgb(16, 56, 148);
+	}
+	.modal button{
+		margin: auto;
+	}
+</style>
+<!-- Modal -->
+<div id="Billing" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add Your Billing Info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-7 mb-3">
+            <label class="w-100">Card Number</label>
+            <input type="number" name="card1" class="form-control float-left" placeholder="" style="width: 23%;margin-right: 2%" maxlength="4" oninput="maxLengthCheck(this)">
+            <input type="number" name="card2" class="form-control float-left" placeholder="" style="width: 23%;margin-right: 2%" maxlength="4" oninput="maxLengthCheck(this)">
+            <input type="number" name="card3" class="form-control float-left" placeholder="" style="width: 23%;margin-right: 2%" maxlength="4" oninput="maxLengthCheck(this)">
+            <input type="number" name="card4" class="form-control float-left" placeholder="" style="width: 23%;margin-right: 2%" maxlength="4" oninput="maxLengthCheck(this)">
+          </div>
+          <div class="col-md-5 mb-3">
+            <label class="w-100">Expiration(M/Y)</label>
+            <input type="number" name="month" class="form-control float-left" placeholder="MM" style="width: 48%;margin-right: 2%" maxlength="2" oninput="maxLengthCheck(this)">
+            <input type="number" name="year" class="form-control float-left" placeholder="YY" style="width: 48%;margin-right: 2%" maxlength="2" oninput="maxLengthCheck(this)">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label class="w-100">Password</label>
+            <input type="password" name="pass1" class="form-control float-left" placeholder="" required="" style="width: 23%;margin-right: 2%" maxlength="1" oninput="maxLengthCheck(this)">
+            <input type="password" name="pass2" class="form-control float-left" placeholder="" required="" style="width: 23%;margin-right: 2%" maxlength="1" oninput="maxLengthCheck(this)">
+            <input type="password" class="form-control float-left" placeholder="" disabled="" style="width: 23%;margin-right: 2%">
+            <input type="password" class="form-control float-left" placeholder="" disabled="" ="" style="width: 23%;margin-right: 2%">
+          </div>
+          <div class="col-md-7 mb-3">
+            <label>Birth(YYMMDD)</label>
+            <input type="number" name="birth" class="form-control float-left mr-1" placeholder="950225" required="">
+          </div>
+        </div>
+        <small class=""><strong>Add Billing Info</strong>을 누름으로써 <a href="#" style="color:rgb(16, 56, 148)"><strong>결제사 정보제공</strong></a>에 동의합니다.</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="addBilling()">Add Billng Info</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+	// merchant_uid
+	function addBilling(){
+		var card1 = $('#Billing input[name=card1]').val()
+    var card2 = $('#Billing input[name=card2]').val()
+    var card3 = $('#Billing input[name=card3]').val()
+    var card4 = $('#Billing input[name=card4]').val()
+    var card_number = card1 + "-" + card2 + "-" + card3 + "-" + card4
+
+    var month = $('#Billing input[name=month]').val()
+    var year = $('#Billing input[name=year]').val()
+    var expiry = "20"+year+"-"+month
+
+    var pass1 = $('#Billing input[name=pass1]').val()
+    var pass2 = $('#Billing input[name=pass2]').val()
+    var pwd_2digit = pass1.toString()+pass2.toString()
+
+    var birth = $('#Billing input[name=birth]').val()
+    
+		console.log(card_number)
+		console.log(expiry)
+    console.log(pwd_2digit)
+		$.ajax({
+      type: "POST",
+      url: "https://api.iamport.kr/subscribe/customers/"+"{{ user.userprofile.customer_uid}}",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      data: {
+				'card_number': card_number,
+				'expiry': expiry,
+        'pwd_2digit': pwd_2digit,
+        'birth': birth,
+      },
+      dataType: "json",
+      success: function(response){
+        console.log(response)
+      },
+        error: function(request, status, error){
+      },
+  	});
+	}
+</script>

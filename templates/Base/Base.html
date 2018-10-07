@@ -36,6 +36,11 @@
 	.swal-button{
 		font-size: 20px;
 	}
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 </style>
 <body>
 
@@ -46,11 +51,25 @@
         {% block content %}
 
         {% endblock content %}
+        {% if user.profile.billing %}
+        {% else %}
+            {% include '../Billing/Billing.html' %}
+            <script>
+                $('#Billing').modal('show')
+            </script>
+        {% endif %}
         <footer class="mastfoot mt-auto">
             <div class="inner">
                 <p>CopyRight ⓒ 2018 <a href="https://tirrilee.io/">Tirrilee</a> All Right Reserved</p>
             </div>
         </footer>
     </div>
+    <script type="text/javascript">
+        function maxLengthCheck(object){
+            if (object.value.length > object.maxLength){
+                object.value = object.value.slice(0, object.maxLength);
+            }    
+        }
+    </script>
 </body>
 </html>
