@@ -12,7 +12,7 @@
 
 
 {% if user.is_authenticated %}
-	{% if user.profile.billing %}
+	{% if user.userprofile.billing %}
 		<script>
 			function AddSite(){
 				$('#AddSite').modal('show')

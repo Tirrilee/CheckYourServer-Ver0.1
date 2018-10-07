@@ -1,4 +1,3 @@
-{% include './_iamport.html' %}
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <style>
@@ -29,40 +28,40 @@
         </button>
       </div>
       <div class="modal-body">
-        <input type="text" name="name" class="form-control mt-3" placeholder="Site Name" required="">
-        <input type="text" name="url" class="form-control mt-3" placeholder="Site URL" required="">
+        <input type="text" name="name" class="form-control mb-3" placeholder="Site Name" required="">
+        <input type="text" name="url" class="form-control mb-3" placeholder="Site URL" required="">
+        <small style="color: red">* 사이트 등록 시 <strong>매월 8000원</strong>이 결제됩니다.</small>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="getMerchantUid()">Add Site</button>
+        <button type="button" class="btn btn-primary" onclick="Payment()">Add Site</button>
       </div>
     </div>
   </div>
 </div>
 <script>
 	// merchant_uid
-	function getMerchantUid(){
+	function Payment(){
 		var name = $('#AddSite input[name=name]').val()
 		var url = $('#AddSite input[name=url]').val()
 		console.log(name)
 		console.log(url)
 		$.ajax({
-            type: "POST",
-            url: "{% url 'API:merchant_uid' %}",
-            data: {
+      type: "POST",
+      url: "{% url 'API:pay' %}",
+      data: {
 				'name': name,
 				'url': url,
 				'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            dataType: "json",
-            success: function(response){
-              	console.log(response)
-              	if (response.status=="error"){
-              		alert(response.message)
-              	}
-              	Payment(response.data)
-            },
-              	error: function(request, status, error){
-            },
-      	});
+      },
+      dataType: "json",
+      success: function(response){
+        	console.log(response)
+        	if (response.status=="error"){
+        		alert(response.message)
+        	}
+      },
+        	error: function(request, status, error){
+      },
+	 })
 	}
 </script>

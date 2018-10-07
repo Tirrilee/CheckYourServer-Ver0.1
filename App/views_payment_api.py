@@ -4,7 +4,7 @@ from django.conf import settings
 from django.views.decorators.http import require_http_methods
 from .models import *
 from .views_api import getContext
-import json
+import json, requests, time, datetime
 # 아임포트 라이브러리
 from iamport import Iamport
 
@@ -12,11 +12,37 @@ from iamport import Iamport
 iamport = Iamport(imp_key=settings.IAMPORT_API_KEY, imp_secret=settings.IAMPORT_API_SECRET)
 
 # ------------------------------------------------------------------
-# ClassName   : getMerchantUid
-# Description : 결제를 위한 파라미터 전달 API
+# ClassName   : getToken
+# Description : 인증토큰 발급
+# ------------------------------------------------------------------
+def getToken():
+    url = "https://api.iamport.kr/users/getToken"
+    data = {
+        'imp_key': settings.IAMPORT_API_KEY,
+        'imp_secret': settings.IAMPORT_API_SECRET
+    }
+    r = requests.post(url=url, data=data)
+    return r.json()
+
+# ------------------------------------------------------------------
+# ClassName   : getReservation
+# Description : 인증토큰 발급
+# ------------------------------------------------------------------
+def getReservation(unix_time):
+    url = "https://api.iamport.kr/subscribe/payments/schedule"
+    data = {
+        'imp_key': settings.IAMPORT_API_KEY,
+        'imp_secret': settings.IAMPORT_API_SECRET
+    }
+    r = requests.post(url=url, data=data)
+    return r.json()
+
+# ------------------------------------------------------------------
+# ClassName   : PaymentAPI
+# Description : 결제 API
 # ------------------------------------------------------------------
 @require_http_methods(["POST"])
-def getMerchantUid(request):
+def PaymentAPI(request):
     name = request.POST.get('name', None)
     url = request.POST.get('url', None)
     profile = UserProfile.objects.get(user=request.user)
@@ -28,25 +54,37 @@ def getMerchantUid(request):
         try:
             site = Site.objects.create(user=request.user, name=name, url=url)
         except:
-            context = getContext("error", "This site is already added.")
+            context = getContext("error", "이미 추가된 사이트 입니다.")
             return HttpResponse(json.dumps(context), content_type="application/json")
-    data = {
-        'pay_method': 'card',
-        'merchant_uid': str(site.merchant_uid),
-        'customer_uid': str(site.customer_uid),
-        'name': str(site.name),
-        'amount': 1004,
-        'buyer_email': request.user.username,
-        'buyer_name': request.user.username,
-        'buyer_tel': profile.phone
-    }
-    context = getContext("success", "Get Merchant Uid.", data)
+    # 결제 로직 구현
+    today = datetime.date(datetime.datetime.today().year,datetime.datetime.today().month,datetime.datetime.today().day)
+    unix_time = time.mktime(today.timetuple())
+    # 토큰 발급
+    token_result = getToken()
+    try:
+        access_token = token_result['response']['access_token']
+    except:
+        context = getContext("error", '토큰 발급 실패')
+        return HttpResponse(json.dumps(context), content_type="application/json")
+    # 결제 진행
+
+
+    context = getContext("success", "아임포트 결제 진행.")
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 # ------------------------------------------------------------------
-# ClassName   : getMerchantUid
-# Description : 결제를 위한 파라미터 전달 API
+# ClassName   : CallbackAPI
+# Description : 결제 후 CallbackAPI
+# ------------------------------------------------------------------
+@require_http_methods(["POST"])
+def CallbackAPI(request):
+    context = getContext("success", "성공")
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+# ------------------------------------------------------------------
+# ClassName   : updateSiteAPI
+# Description : 결제 상태 업데이트
 # ------------------------------------------------------------------
 @require_http_methods(["POST"])
 def updateSiteAPI(request):
@@ -64,41 +102,48 @@ def updateSiteAPI(request):
         context = getContext("error", "Cannot found site data.")
     return HttpResponse(json.dumps(context), content_type="application/json")
 
-
-
-def PaymentAPI(request):
-    # 테스트용 값
-    payload = {
-        'customer_uid': '{고객 아이디}',
-        'schedules': [
-            {
-                'merchant_uid': 'test_merchant_01',
-                # UNIX timestamp
-                'schedule_at': 1478150985,
-                'amount': 1004
-            },
-            {
-                'merhcant_uid': 'test_merchant_02',
-                # UNIX timestamp
-                'schedule_at': 1478150985,
-                'amount': 5000,
-            },
-        ]
-    }
+# ------------------------------------------------------------------
+# ClassName   : getBillingAPI
+# Description : 빌링키를 설정하는 API
+# ------------------------------------------------------------------
+def getBillingAPI(request):
+    token_result = getToken()
     try:
-        response = iamport.pay_schedule(**payload)
-        print(response)
-    except KeyError:
-        # 필수 값이 없을때 에러 처리
-        print(KeyError)
-        pass
-    except Iamport.ResponseError as e:
-        # 응답 에러 처리
-        print(e.code)
-        print(e.message)
-    except Iamport.HttpError as http_error:
-        # HTTP not 200 응답 에러 처리
-        print(http_error.code)
-        print(http_error.reason)
-    context = {}
+        access_token = token_result['response']['access_token']
+    except:
+        context = getContext("error", '토큰 발급 실패')
+        return HttpResponse(json.dumps(context), content_type="application/json")
+
+    card_number = request.POST.get('card_number', None)
+    expiry = request.POST.get('expiry', None)
+    pwd_2digit = request.POST.get('pwd_2digit', None)
+    birth = request.POST.get('birth', None)
+
+    if card_number == '' or expiry == '' or pwd_2digit == '' or birth == '':
+        context = getContext("error", "빈칸을 채워주세요.")
+    # 빌링키 발급
+    else:
+        profile = UserProfile.objects.get(user=request.user)
+        url = "https://api.iamport.kr/subscribe/customers/" + str(profile.customer_uid)
+        headers = {"Authorization": access_token}
+        data = {
+            'card_number' : card_number,
+            'expiry' : expiry,
+            'pwd_2digit': pwd_2digit,
+            'birth': birth
+        }
+        r = requests.post(url=url, headers=headers, data=data)
+        if r.json()['code']==0:
+            context = getContext("success", "빌링키 발급 성공")
+            profile.billing = True
+            profile.save()
+        else:
+            context = getContext("error", "빌링키 발급 실패")
+
     return HttpResponse(json.dumps(context), content_type="application/json")
+
+# ------------------------------------------------------------------
+# ClassName   : PaymentAPI
+# Description : 빌링키를 설정하는 API
+# ------------------------------------------------------------------
+# def PaymentAPI(request):

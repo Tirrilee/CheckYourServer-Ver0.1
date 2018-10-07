@@ -4,13 +4,15 @@ from .views_api import (
     getNation,
     SignupAPI, SigninAPI
 )
-from .views_payment_api import getMerchantUid, updateSiteAPI
+from .views_payment_api import PaymentAPI, updateSiteAPI, getBillingAPI, CallbackAPI
 
 app_name = "API"
 urlpatterns = [
     path('', SMSValidate, name="sms-validation"),
-    path('merchant-uid', getMerchantUid, name="merchant_uid"),
+    path('pay', PaymentAPI, name="pay"),
     path('site-update', updateSiteAPI, name="site_update"),
+    path('billing', getBillingAPI, name="billing"),
+    path('/iamport-callback/schedule', CallbackAPI, name="billing"),
 
     path('nations/', getNation, name="nation"),
 

@@ -53,13 +53,15 @@
 
         {% endblock content %}
         {% if user.is_authenticated %}
-            {% if user.profile.billing %}
-                {% else %}
-                    <script>
-                        $('#Billing').modal('show')
-                    </script>
-                {% endif %}
-        {% else %}
+            {% if user.userprofile.billing %}
+                <script>
+                    console.log("빌링키가 이미 발급된 유저입니다.")
+                </script>
+            {% else %}
+                <script>
+                    $('#Billing').modal('show')
+                </script>
+            {% endif %}
         {% endif %}
         <footer class="mastfoot mt-auto">
             <div class="inner">

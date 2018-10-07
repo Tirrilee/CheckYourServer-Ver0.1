@@ -28,6 +28,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="alert alert-danger text-left" role="alert" style="display: none"></div>
         <div class="row">
           <div class="col-md-7 mb-3">
             <label class="w-100">Card Number</label>
@@ -45,8 +46,8 @@
         <div class="row">
           <div class="col-md-5 mb-3">
             <label class="w-100">Password</label>
-            <input type="password" name="pass1" class="form-control float-left" placeholder="" required="" style="width: 23%;margin-right: 2%" maxlength="1" oninput="maxLengthCheck(this)">
-            <input type="password" name="pass2" class="form-control float-left" placeholder="" required="" style="width: 23%;margin-right: 2%" maxlength="1" oninput="maxLengthCheck(this)">
+            <input type="password" name="pass1" class="form-control float-left" placeholder="" required="" style="width: 23%;margin-right: 2%;text-align: center;" maxlength="1" oninput="maxLengthCheck(this)">
+            <input type="password" name="pass2" class="form-control float-left" placeholder="" required="" style="width: 23%;margin-right: 2%;text-align: center;" maxlength="1" oninput="maxLengthCheck(this)">
             <input type="password" class="form-control float-left" placeholder="" disabled="" style="width: 23%;margin-right: 2%">
             <input type="password" class="form-control float-left" placeholder="" disabled="" ="" style="width: 23%;margin-right: 2%">
           </div>
@@ -55,7 +56,7 @@
             <input type="number" name="birth" class="form-control float-left mr-1" placeholder="950225" required="">
           </div>
         </div>
-        <small class=""><strong>Add Billing Info</strong>을 누름으로써 <a href="#" style="color:rgb(16, 56, 148)"><strong>결제사 정보제공</strong></a>에 동의합니다.</small>
+        <small><strong>Add Billing Info</strong>을 누름으로써 <a href="#" style="color:rgb(16, 56, 148)"><strong>결제사 정보제공</strong></a>에 동의합니다.</small>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="addBilling()">Add Billng Info</button>
@@ -66,6 +67,9 @@
 <script>
 	// merchant_uid
 	function addBilling(){
+    // console("token : "+access_token)
+    // console.log(getToken())
+
 		var card1 = $('#Billing input[name=card1]').val()
     var card2 = $('#Billing input[name=card2]').val()
     var card3 = $('#Billing input[name=card3]').val()
@@ -85,24 +89,32 @@
 		console.log(card_number)
 		console.log(expiry)
     console.log(pwd_2digit)
+    
 		$.ajax({
       type: "POST",
-      url: "https://api.iamport.kr/subscribe/customers/"+"{{ user.userprofile.customer_uid}}",
-      headers:{
-        'Content-Type': 'application/json'
-      },
+      url: "{% url 'API:billing' %}",
       data: {
 				'card_number': card_number,
 				'expiry': expiry,
         'pwd_2digit': pwd_2digit,
         'birth': birth,
+        'csrfmiddlewaretoken': '{{ csrf_token }}'
       },
       dataType: "json",
       success: function(response){
         console.log(response)
+        if(response.status == "success"){
+            location.href="{% url 'App:home' %}"
+        }
+        else{
+            $('.alert').css('display', 'none')
+            $('.alert').empty()
+            $('.alert-danger').css('display', 'block')
+            $('.alert-danger').append(response.message)
+        }
       },
         error: function(request, status, error){
       },
-  	});
+  	})
 	}
 </script>
