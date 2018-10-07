@@ -41,7 +41,7 @@ def getToken():
 
 # ------------------------------------------------------------------
 # ClassName   : getReservation
-# Description : 인증토큰 발급
+# Description : 결제예약
 # ------------------------------------------------------------------
 def getReservation(unix_time):
     url = "https://api.iamport.kr/subscribe/payments/schedule"
@@ -50,6 +50,16 @@ def getReservation(unix_time):
         'imp_secret': settings.IAMPORT_API_SECRET
     }
     r = requests.post(url=url, data=data)
+    return r.json()
+
+# ------------------------------------------------------------------
+# ClassName   : getReservation
+# Description : 결제예약
+# ------------------------------------------------------------------
+def getPaymentData(imp_uid, access_token):
+    url = "https://api.iamport.kr/payments/"+imp_uid
+    headers = {"Authorization": access_token}
+    r = requests.get(url=url, headers=headers)
     return r.json()
 
 # ------------------------------------------------------------------
@@ -94,17 +104,28 @@ def PaymentAPI(request):
 # ------------------------------------------------------------------
 @api_view(['POST'])
 def CallbackAPI(request):
+    client_ip = getClientIP(request)
+    if not client_ip=="52.78.100.19" or not client_ip=="52.78.48.223":
+        context = getContext("error", "잘못된 접근입니다.")
+        return Response(context)
+
+    imp_uid = json.loads(request.body)["imp_uid"]
+    merchant_uid = json.loads(request.body)["merchant_uid"]
+    status = json.loads(request.body)["status"]
+    # 상태 업데이트
     try:
-        imp_uid = json.loads(request.body)["imp_uid"]
+        site = Site.objects.get(merchant_uid=merchant_uid)
+        site.status=status
+        site.save()
     except:
-        imp_uid = None
-    try:
-        imp_uid2 = request.body
-    except:
-        imp_uid2 = None
-    context = getContext("success", "성공", {'imp_uid':str(imp_uid), 'ip': getClientIP(request)})
+        pass
+    # 결제정보 가져오기
+    access_token = getToken()['response']['access_token']
+    payment_data = getPaymentData(imp_uid, access_token)
+    # 예약하기
+    context = {"payment_data":payment_data}
     # return HttpResponse(json.dumps(context), content_type="application/json")
-    return Response(context, status=status.HTTP_201_CREATED)
+    return Response(context)
 
 # ------------------------------------------------------------------
 # ClassName   : updateSiteAPI
