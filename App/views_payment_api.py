@@ -139,10 +139,10 @@ def CallbackAPI(request):
     access_token = getToken()['response']['access_token']
     payment_data = getPaymentData(imp_uid, access_token)
     # 예약하기
-    context = {"payment_data":payment_data}
-    print(str(context))
+    # context = {"payment_data":payment_data}
+    print(str(payment_data))
     # return HttpResponse(json.dumps(context), content_type="application/json")
-    return Response(context)
+    return Response(payment_data)
 
 # ------------------------------------------------------------------
 # ClassName   : updateSiteAPI
