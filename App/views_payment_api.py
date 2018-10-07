@@ -81,12 +81,12 @@ def PaymentAPI(request):
 # ClassName   : CallbackAPI
 # Description : 결제 후 CallbackAPI
 # ------------------------------------------------------------------
-# @api_view(['POST'])
 @require_http_methods(["POST"])
+@api_view(['POST'])
 def CallbackAPI(request):
-    context = getContext("success", "성공")
-    return HttpResponse(json.dumps(context), content_type="application/json")
-    # return Response(context, status=status.HTTP_201_CREATED)
+    context = getContext("success", "성공", request)
+    # return HttpResponse(json.dumps(context), content_type="application/json")
+    return Response(context, status=status.HTTP_201_CREATED)
 
 # ------------------------------------------------------------------
 # ClassName   : updateSiteAPI
