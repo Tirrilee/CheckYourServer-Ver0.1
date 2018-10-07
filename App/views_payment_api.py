@@ -84,7 +84,7 @@ def PaymentAPI(request):
 @api_view(['POST'])
 def CallbackAPI(request):
     try:
-        imp_uid = request.body.imp_uid
+        imp_uid = request.body.json()["imp_uid"]
     except:
         imp_uid = None
     try:
