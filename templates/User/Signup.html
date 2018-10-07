@@ -19,8 +19,8 @@
             <input type="number" name="birth" class="form-control mb-1" placeholder="birth(ex:950225)" maxlength="6" required="">
 
             <div class="btn-group w-100">
-                  {% include './Dropdown.html' %}
-                  <input type="number" name="phone" class="form-control mb-1 ml-1" placeholder="phone" required="">
+                  <!-- {% include './Dropdown.html' %} -->
+                  <input type="number" name="phone" class="form-control mb-1 ml-0" placeholder="phone" required="">
             </div>
             <div class="btn-group w-100">
                   <input type="number" name="code" class="form-control mb-1" placeholder="valification code" required="">
@@ -66,7 +66,8 @@
             var password2 = $("#SignUp input[name=password2]").val()
             var birth = $("#SignUp input[name=birth]").val()
             var number = $("#SignUp input[name=phone]").val()
-            var code = $("#SignUp input[name=code]").val()
+            // var code = $("#SignUp input[name=code]").val()
+            var code = "82"
             $.ajax({
                   type: "POST",
                   url: "{% url 'API:signup' %}",
