@@ -84,14 +84,14 @@ def PaymentAPI(request):
 @api_view(['POST'])
 def CallbackAPI(request):
     try:
-        imp_uid = request.body.get("imp_uid", None)
+        imp_uid = json.loads(request.body)["imp_uid"]
     except:
         imp_uid = None
     try:
         imp_uid2 = request.body
     except:
         imp_uid2 = None
-    context = getContext("success", "성공", {'imp_uid':imp_uid, 'imp_uid2':imp_uid2,})
+    context = getContext("success", "성공", {'imp_uid':imp_uid, 'imp_uid2':type(imp_uid2),})
     # return HttpResponse(json.dumps(context), content_type="application/json")
     return Response(context, status=status.HTTP_201_CREATED)
 
