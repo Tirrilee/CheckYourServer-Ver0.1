@@ -81,7 +81,6 @@ def PaymentAPI(request):
 # ClassName   : CallbackAPI
 # Description : 결제 후 CallbackAPI
 # ------------------------------------------------------------------
-@require_http_methods(["POST"])
 @api_view(['POST'])
 def CallbackAPI(request):
     context = getContext("success", "성공", request)
