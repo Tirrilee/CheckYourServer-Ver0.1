@@ -53,8 +53,24 @@ def getReservation(unix_time):
     return r.json()
 
 # ------------------------------------------------------------------
-# ClassName   : getReservation
-# Description : 결제예약
+# ClassName   : getPayment
+# Description : 결제
+# ------------------------------------------------------------------
+def getPayment(customer_uid, merchant_uid, access_token):
+    url = "https://api.iamport.kr/subscribe/payments/again"
+    headers = {"Authorization": access_token}
+    data = {
+        'customer_uid': customer_uid,
+        'merchant_uid': merchant_uid,
+        'amount': 7900,
+        'name': '월간 사용료 정기결제'
+    }
+    r = requests.post(url=url, headers=headers, data=data)
+    return r.json()
+
+# ------------------------------------------------------------------
+# ClassName   : getPaymentData
+# Description : 결제정보 가져오기
 # ------------------------------------------------------------------
 def getPaymentData(imp_uid, access_token):
     url = "https://api.iamport.kr/payments/"+imp_uid
@@ -85,17 +101,16 @@ def PaymentAPI(request):
     today = datetime.date(datetime.datetime.today().year,datetime.datetime.today().month,datetime.datetime.today().day)
     unix_time = time.mktime(today.timetuple())
     # 토큰 발급
-    token_result = getToken()
-    try:
-        access_token = token_result['response']['access_token']
-    except:
-        context = getContext("error", '토큰 발급 실패')
-        return HttpResponse(json.dumps(context), content_type="application/json")
+    access_token = getToken()['response']['access_token']
     # 결제 진행
-
-
-    context = getContext("success", "아임포트 결제 진행.")
-
+    result = getPayment(profile.customer_uid, site.merchant_uid, access_token)
+    if result["code"]==0:
+        context = getContext("success", "아임포트 결제 진행.", {"result":result})
+        site.imp_uid = result["response"]["imp_uid"]
+        site.status = result["response"]["status"]
+        site.save()
+    else:
+        context = getContext("error", "아임포트 결제 실패.", {"result": result})
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 # ------------------------------------------------------------------
@@ -104,6 +119,7 @@ def PaymentAPI(request):
 # ------------------------------------------------------------------
 @api_view(['POST'])
 def CallbackAPI(request):
+    print("콜백 URL 접근")
     client_ip = getClientIP(request)
     if not client_ip=="52.78.100.19" or client_ip=="52.78.48.223":
         context = getContext("error", "잘못된 접근입니다.", {"ip":client_ip})
@@ -124,6 +140,7 @@ def CallbackAPI(request):
     payment_data = getPaymentData(imp_uid, access_token)
     # 예약하기
     context = {"payment_data":payment_data}
+    print(context)
     # return HttpResponse(json.dumps(context), content_type="application/json")
     return Response(context)
 
