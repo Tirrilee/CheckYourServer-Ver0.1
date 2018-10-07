@@ -140,7 +140,7 @@ def CallbackAPI(request):
     payment_data = getPaymentData(imp_uid, access_token)
     # 예약하기
     context = {"payment_data":payment_data}
-    print(context)
+    print(str(context))
     # return HttpResponse(json.dumps(context), content_type="application/json")
     return Response(context)
 
