@@ -16,6 +16,17 @@ from rest_framework.response import Response
 iamport = Iamport(imp_key=settings.IAMPORT_API_KEY, imp_secret=settings.IAMPORT_API_SECRET)
 
 # ------------------------------------------------------------------
+# ClassName   : getClientIP
+# Description : 클라이언트 IP 가져오기
+# ------------------------------------------------------------------
+def getClientIP(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+# ------------------------------------------------------------------
 # ClassName   : getToken
 # Description : 인증토큰 발급
 # ------------------------------------------------------------------
@@ -91,7 +102,7 @@ def CallbackAPI(request):
         imp_uid2 = request.body
     except:
         imp_uid2 = None
-    context = getContext("success", "성공", {'imp_uid':str(imp_uid), 'imp_uid2':str(type(imp_uid2))})
+    context = getContext("success", "성공", {'imp_uid':str(imp_uid), 'ip': getClientIP(request)})
     # return HttpResponse(json.dumps(context), content_type="application/json")
     return Response(context, status=status.HTTP_201_CREATED)
 
