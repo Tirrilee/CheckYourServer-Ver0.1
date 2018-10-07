@@ -83,7 +83,8 @@ def PaymentAPI(request):
 # ------------------------------------------------------------------
 @api_view(['POST'])
 def CallbackAPI(request):
-    context = getContext("success", "성공", request.body)
+    imp_uid = request.POST.get('imp_uid', None)
+    context = getContext("success", "성공", {'imp_uid':imp_uid})
     # return HttpResponse(json.dumps(context), content_type="application/json")
     return Response(context, status=status.HTTP_201_CREATED)
 
