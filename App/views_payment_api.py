@@ -8,6 +8,10 @@ import json, requests, time, datetime
 # 아임포트 라이브러리
 from iamport import Iamport
 
+# Rest Framework
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 # 아임포트 API 키
 iamport = Iamport(imp_key=settings.IAMPORT_API_KEY, imp_secret=settings.IAMPORT_API_SECRET)
 
@@ -77,10 +81,10 @@ def PaymentAPI(request):
 # ClassName   : CallbackAPI
 # Description : 결제 후 CallbackAPI
 # ------------------------------------------------------------------
-@require_http_methods(["POST"])
+@api_view(['POST'])
 def CallbackAPI(request):
     context = getContext("success", "성공")
-    return HttpResponse(json.dumps(context), content_type="application/json")
+    return Response(context, status=status.HTTP_201_CREATED)
 
 # ------------------------------------------------------------------
 # ClassName   : updateSiteAPI
