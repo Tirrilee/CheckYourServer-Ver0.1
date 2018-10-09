@@ -32,3 +32,11 @@ class UserProfileAdmin(admin.ModelAdmin):
 @admin.register(Site)
 class SiteAdmin(admin.ModelAdmin):
     list_display = [f.name for f in Site._meta.fields]
+
+# ------------------------------------------------------------------
+# TableName   : CheckLog
+# Description : 사이트 체크 로그 테이블
+# ------------------------------------------------------------------
+@admin.register(CheckLog)
+class CheckLogAdmin(admin.ModelAdmin):
+    list_display = [f.name for f in CheckLog._meta.fields]

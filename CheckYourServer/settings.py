@@ -11,9 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-import djcelery
 
-djcelery.setup_loader()
+
 BROKER_URL = 'django://'
 
 
@@ -43,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'kombu.transport.django',
+    'djcelery',
     'rest_framework',
     'App',
 ]

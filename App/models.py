@@ -66,3 +66,19 @@ class Site(models.Model):
 
     def __str__(self):
         return str(self.user) + " : " + str(self.name)
+
+# ------------------------------------------------------------------
+# TableName   : CheckLog
+# Description : 사이트 체크 로그 테이블
+# ------------------------------------------------------------------
+class CheckLog(models.Model):
+    site = models.ForeignKey(Site, on_delete=models.CASCADE, verbose_name="사이트")
+    status_code = models.CharField(max_length=8, verbose_name="상태코드", blank=True, null=True)
+    headers = models.TextField(verbose_name="헤더", blank=True, null=True)
+    error_flag = models.BooleanField(verbose_name="에러 여부", default=False)
+    error_msg = models.TextField(verbose_name="에러 메세지", blank=True, null=True)
+    response_tiem = models.FloatField(verbose_name="응답시간", blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성날짜")
+
+    def __str__(self):
+        return str(self.site) + " - " + str(self.created_at)
