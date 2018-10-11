@@ -1,0 +1,146 @@
+[2018-10-12 01:57:16,259: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2018-10-12 01:57:16,273: INFO/MainProcess] mingle: searching for neighbors
+[2018-10-12 01:57:17,290: INFO/MainProcess] mingle: all alone
+[2018-10-12 01:57:17,409: WARNING/MainProcess] /CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/fixups/django.py:200: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn('Using settings.DEBUG leads to a memory leak, never '
+[2018-10-12 01:57:17,409: INFO/MainProcess] celery@ip-172-31-25-42 ready.
+[2018-10-12 02:03:26,220: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2018-10-12 02:03:26,229: INFO/MainProcess] mingle: searching for neighbors
+[2018-10-12 02:03:27,236: INFO/MainProcess] mingle: all alone
+[2018-10-12 02:03:27,246: WARNING/MainProcess] /CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/fixups/django.py:265: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn('Using settings.DEBUG leads to a memory leak, never '
+[2018-10-12 02:03:27,246: WARNING/MainProcess] celery@ip-172-31-25-42 ready.
+[2018-10-12 02:22:53,577: INFO/MainProcess] Received task: App.tasks.CheckSite[dc8118bc-2378-4037-ba81-8fa7d3d10024]
+[2018-10-12 02:22:53,591: WARNING/Worker-7] wkddnjset : 테스트용 - 2018-10-10 00:52:12.739675+00:00
+[2018-10-12 02:22:53,591: WARNING/Worker-7] 이전 파싱 때 정상
+[2018-10-12 02:22:53,594: WARNING/Worker-7] 에러발생
+[2018-10-12 02:22:53,595: WARNING/Worker-7] wkddnjset : 테스트용 : 문자전송
+[2018-10-12 02:22:53,609: INFO/MainProcess] Task App.tasks.CheckSite[dc8118bc-2378-4037-ba81-8fa7d3d10024] succeeded in 0.029906343999755336s: None
+[2018-10-12 02:31:02,001: INFO/MainProcess] Received task: App.tasks.CheckSite[629744e5-bebf-499c-a8c3-96145523657c]
+[2018-10-12 02:31:02,024: WARNING/Worker-8] wkddnjset : 테스트용 - 2018-10-11 17:22:53.596159+00:00
+[2018-10-12 02:31:02,025: WARNING/Worker-8] 이전 파싱 때 에러
+[2018-10-12 02:31:02,040: INFO/MainProcess] Task App.tasks.CheckSite[629744e5-bebf-499c-a8c3-96145523657c] succeeded in 0.038332521999109304s: None
+[2018-10-12 02:32:02,089: INFO/MainProcess] Received task: App.tasks.CheckSite[7e6b8ab4-98ae-4e10-af24-4c1bab925b79]
+[2018-10-12 02:32:02,101: WARNING/Worker-1] wkddnjset : 테스트용 - 2018-10-11 17:31:02.032979+00:00
+[2018-10-12 02:32:02,102: WARNING/Worker-1] 이전 파싱 때 에러
+[2018-10-12 02:32:02,111: INFO/MainProcess] Task App.tasks.CheckSite[7e6b8ab4-98ae-4e10-af24-4c1bab925b79] succeeded in 0.021195012999669416s: None
+[2018-10-12 02:39:01,646: INFO/MainProcess] Received task: App.tasks.CheckSite[1c03b45d-a7a6-42d4-acb0-fced87e1aa2a]
+[2018-10-12 02:39:01,662: WARNING/Worker-2] None
+[2018-10-12 02:39:01,665: ERROR/MainProcess] Task App.tasks.CheckSite[1c03b45d-a7a6-42d4-acb0-fced87e1aa2a] raised unexpected: AttributeError("'NoneType' object has no attribute 'error_flag'",)
+Traceback (most recent call last):
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 240, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 438, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/App/tasks.py", line 47, in CheckSite
+    if result.error_flag:
+AttributeError: 'NoneType' object has no attribute 'error_flag'
+[2018-10-12 02:40:01,710: INFO/MainProcess] Received task: App.tasks.CheckSite[a9ecbd65-05bf-4d82-b737-26594a11f5c5]
+[2018-10-12 02:40:01,720: WARNING/Worker-3] None
+[2018-10-12 02:40:01,722: ERROR/MainProcess] Task App.tasks.CheckSite[a9ecbd65-05bf-4d82-b737-26594a11f5c5] raised unexpected: AttributeError("'NoneType' object has no attribute 'error_flag'",)
+Traceback (most recent call last):
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 240, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 438, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/App/tasks.py", line 47, in CheckSite
+    if result.error_flag:
+AttributeError: 'NoneType' object has no attribute 'error_flag'
+[2018-10-12 02:44:17,751: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2018-10-12 02:44:17,761: INFO/MainProcess] mingle: searching for neighbors
+[2018-10-12 02:44:18,768: INFO/MainProcess] mingle: all alone
+[2018-10-12 02:44:18,778: WARNING/MainProcess] /CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/fixups/django.py:265: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn('Using settings.DEBUG leads to a memory leak, never '
+[2018-10-12 02:44:18,778: WARNING/MainProcess] celery@ip-172-31-25-42 ready.
+[2018-10-12 02:44:37,930: INFO/MainProcess] Received task: App.tasks.CheckSite[03d986f2-1391-4b03-95f2-bdbe0b3aafc5]
+[2018-10-12 02:44:37,947: WARNING/Worker-7] None
+[2018-10-12 02:44:37,950: ERROR/MainProcess] Task App.tasks.CheckSite[03d986f2-1391-4b03-95f2-bdbe0b3aafc5] raised unexpected: AttributeError("'NoneType' object has no attribute 'error_flag'",)
+Traceback (most recent call last):
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 240, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 438, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/App/tasks.py", line 47, in CheckSite
+    if result.error_flag:
+AttributeError: 'NoneType' object has no attribute 'error_flag'
+[2018-10-12 02:45:37,967: INFO/MainProcess] Received task: App.tasks.CheckSite[15358c0b-d1cc-4b8a-9459-55a5a3e91db7]
+[2018-10-12 02:45:37,977: WARNING/Worker-8] None
+[2018-10-12 02:45:37,979: ERROR/MainProcess] Task App.tasks.CheckSite[15358c0b-d1cc-4b8a-9459-55a5a3e91db7] raised unexpected: AttributeError("'NoneType' object has no attribute 'error_flag'",)
+Traceback (most recent call last):
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 240, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 438, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/App/tasks.py", line 47, in CheckSite
+    if result.error_flag:
+AttributeError: 'NoneType' object has no attribute 'error_flag'
+[2018-10-12 02:46:38,004: INFO/MainProcess] Received task: App.tasks.CheckSite[c8222461-4341-4782-8f1a-ea4259b06515]
+[2018-10-12 02:46:38,013: WARNING/Worker-1] None
+[2018-10-12 02:46:38,015: ERROR/MainProcess] Task App.tasks.CheckSite[c8222461-4341-4782-8f1a-ea4259b06515] raised unexpected: AttributeError("'NoneType' object has no attribute 'error_flag'",)
+Traceback (most recent call last):
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 240, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 438, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/App/tasks.py", line 47, in CheckSite
+    if result.error_flag:
+AttributeError: 'NoneType' object has no attribute 'error_flag'
+[2018-10-12 02:47:38,020: INFO/MainProcess] Received task: App.tasks.CheckSite[fc47c235-5228-42cd-8133-8b9f42c766b7]
+[2018-10-12 02:47:38,031: WARNING/Worker-2] wkddnjset : Tirrilee 홈페이지 - 2018-10-11 17:47:12.176633+00:00
+[2018-10-12 02:47:38,032: WARNING/Worker-2] 이전 파싱 때 정상
+[2018-10-12 02:47:38,830: WARNING/Worker-2] None
+[2018-10-12 02:47:38,832: ERROR/MainProcess] Task App.tasks.CheckSite[fc47c235-5228-42cd-8133-8b9f42c766b7] raised unexpected: AttributeError("'NoneType' object has no attribute 'error_flag'",)
+Traceback (most recent call last):
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 240, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 438, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/App/tasks.py", line 47, in CheckSite
+    if result.error_flag:
+AttributeError: 'NoneType' object has no attribute 'error_flag'
+[2018-10-12 02:48:38,060: INFO/MainProcess] Received task: App.tasks.CheckSite[fce0b527-7799-45b2-8ea0-50da6e927034]
+[2018-10-12 02:48:38,072: WARNING/Worker-3] wkddnjset : Tirrilee 홈페이지 - 2018-10-11 17:47:38.825050+00:00
+[2018-10-12 02:48:38,072: WARNING/Worker-3] 이전 파싱 때 정상
+[2018-10-12 02:48:38,881: WARNING/Worker-3] None
+[2018-10-12 02:48:38,883: ERROR/MainProcess] Task App.tasks.CheckSite[fce0b527-7799-45b2-8ea0-50da6e927034] raised unexpected: AttributeError("'NoneType' object has no attribute 'error_flag'",)
+Traceback (most recent call last):
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 240, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 438, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/App/tasks.py", line 47, in CheckSite
+    if result.error_flag:
+AttributeError: 'NoneType' object has no attribute 'error_flag'
+[2018-10-12 02:49:38,102: INFO/MainProcess] Received task: App.tasks.CheckSite[8ec9930c-0a27-4f35-9f28-9e1932cc7d08]
+[2018-10-12 02:49:38,114: WARNING/Worker-4] wkddnjset : Tirrilee 홈페이지 - 2018-10-11 17:49:08.324549+00:00
+[2018-10-12 02:49:38,114: WARNING/Worker-4] 이전 파싱 때 정상
+[2018-10-12 02:49:38,897: WARNING/Worker-4] None
+[2018-10-12 02:49:38,898: ERROR/MainProcess] Task App.tasks.CheckSite[8ec9930c-0a27-4f35-9f28-9e1932cc7d08] raised unexpected: AttributeError("'NoneType' object has no attribute 'error_flag'",)
+Traceback (most recent call last):
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 240, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/lib/python3.6/site-packages/celery/app/trace.py", line 438, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/CheckYourSite/CheckYourSite/App/tasks.py", line 47, in CheckSite
+    if result.error_flag:
+AttributeError: 'NoneType' object has no attribute 'error_flag'
+[2018-10-12 02:50:38,137: INFO/MainProcess] Received task: App.tasks.CheckSite[58e9eecd-d7c3-4437-81c3-126ff0924fe2]
+[2018-10-12 02:50:38,149: WARNING/Worker-5] wkddnjset : Tirrilee 홈페이지 - 2018-10-11 17:49:38.892052+00:00
+[2018-10-12 02:50:38,149: WARNING/Worker-5] 이전 파싱 때 정상
+[2018-10-12 02:50:38,929: WARNING/Worker-5] wkddnjset : 테스트용 - 2018-10-11 17:50:18.613657+00:00
+[2018-10-12 02:50:38,930: WARNING/Worker-5] 이전 파싱 때 정상
+[2018-10-12 02:50:38,931: WARNING/Worker-5] 에러발생
+[2018-10-12 02:50:38,932: WARNING/Worker-5] wkddnjset : 테스트용 : 문자전송
+[2018-10-12 02:50:38,937: INFO/MainProcess] Task App.tasks.CheckSite[58e9eecd-d7c3-4437-81c3-126ff0924fe2] succeeded in 0.7999764260021038s: None
+[2018-10-12 02:51:38,174: INFO/MainProcess] Received task: App.tasks.CheckSite[309df3b3-1c39-4777-983c-aefeed7c8b9b]
+[2018-10-12 02:51:38,186: WARNING/Worker-6] wkddnjset : Tirrilee 홈페이지 - 2018-10-11 17:50:38.922848+00:00
+[2018-10-12 02:51:38,186: WARNING/Worker-6] 이전 파싱 때 정상
+[2018-10-12 02:51:38,818: WARNING/Worker-6] wkddnjset : 테스트용 - 2018-10-11 17:50:38.933268+00:00
+[2018-10-12 02:51:38,818: WARNING/Worker-6] 이전 파싱 때 에러
+[2018-10-12 02:51:38,824: INFO/MainProcess] Task App.tasks.CheckSite[309df3b3-1c39-4777-983c-aefeed7c8b9b] succeeded in 0.6497208529981435s: None
+[2018-10-12 02:52:38,191: INFO/MainProcess] Received task: App.tasks.CheckSite[d9ffeacb-5fa9-4ada-8eae-54c1d7c22778]
+[2018-10-12 02:52:38,198: WARNING/Worker-7] wkddnjset : Tirrilee 홈페이지 - 2018-10-11 17:51:38.811421+00:00
+[2018-10-12 02:52:38,199: WARNING/Worker-7] 이전 파싱 때 정상
+[2018-10-12 02:52:38,872: WARNING/Worker-7] wkddnjset : 테스트용 - 2018-10-11 17:51:38.820622+00:00
+[2018-10-12 02:52:38,872: WARNING/Worker-7] 이전 파싱 때 에러
+[2018-10-12 02:52:38,878: INFO/MainProcess] Task App.tasks.CheckSite[d9ffeacb-5fa9-4ada-8eae-54c1d7c22778] succeeded in 0.686494165998738s: None
