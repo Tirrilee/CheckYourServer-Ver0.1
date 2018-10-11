@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 from CheckYourServer.celery import app
-from .models import Site, CheckLog
+from .models import Site, Order, CheckLog
 import requests
 # SMS 전송 라이브러리
 from sdk.api.message import Message
@@ -35,7 +35,9 @@ def SendSMS(number, msg):
 @app.task
 def CheckSite():
     # 실제 백그라운드에서 작업할 내용을 task로 정의한다.
-    sites = Site.objects.filter(status="paid")
+    # 역참조해서 마지막 Order 테이블에 before_status가 True인 값들만 불러오기
+    sites = Site.objects.filter()
+
     for site in sites:
         # 1. 사이트 중 에러가 안난 사이트를 가져와서 확인한다.
         # 2. 이중 에러가 날 경우 상태를 바꾸고, 문자를 전송한다.

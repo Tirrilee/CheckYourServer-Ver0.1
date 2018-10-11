@@ -40,3 +40,14 @@ class SiteAdmin(admin.ModelAdmin):
 @admin.register(CheckLog)
 class CheckLogAdmin(admin.ModelAdmin):
     list_display = [f.name for f in CheckLog._meta.fields]
+
+
+# ------------------------------------------------------------------
+# TableName   : Order
+# Description : 주문 정보 테이블
+# ------------------------------------------------------------------
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = [f.name for f in Order._meta.fields]
+
+
