@@ -11,3 +11,11 @@ celerybeat-schedule.dat
 celerybeat-schedule.dir
 
 LOGFILE
+.bash_history
+.cache/
+.viminfo
+bin/
+lib/
+lib64
+pip-selfcheck.json
+pyvenv.cfg

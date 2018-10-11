@@ -1,0 +1,393 @@
+*** Starting uWSGI 2.0.17.1 (64bit) on [Thu Oct 11 15:07:18 2018] ***
+compiled with version: 5.4.0 20160609 on 11 October 2018 15:02:46
+os: Linux-4.4.0-1067-aws #77-Ubuntu SMP Mon Aug 27 13:22:03 UTC 2018
+nodename: ip-172-31-25-42
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /CheckYourSite/CheckYourSite
+detected binary path: /CheckYourSite/CheckYourSite/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /CheckYourSite/CheckYourSite
+your processes number limit is 3900
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 bound to UNIX address /CheckYourSite/CheckYourSite/run/uwsgi.sock fd 6
+Python version: 3.6.6 (default, Oct 11 2018, 14:52:08)  [GCC 5.4.0 20160609]
+PEP 405 virtualenv detected: /CheckYourSite/CheckYourSite
+Set PythonHome to /CheckYourSite/CheckYourSite
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xc314e0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+setting request body buffering size to 204800 bytes
+mapped 1388600 bytes (1356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xc314e0 pid: 6908 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 6908)
+spawned uWSGI worker 1 (pid: 6910, cores: 1)
+spawned uWSGI worker 2 (pid: 6911, cores: 1)
+spawned uWSGI worker 3 (pid: 6912, cores: 1)
+spawned uWSGI worker 4 (pid: 6913, cores: 1)
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket /CheckYourSite/CheckYourSite/run/uwsgi.sock removed.
+*** Starting uWSGI 2.0.17.1 (64bit) on [Thu Oct 11 15:10:21 2018] ***
+compiled with version: 5.4.0 20160609 on 11 October 2018 15:09:41
+os: Linux-4.4.0-1067-aws #77-Ubuntu SMP Mon Aug 27 13:22:03 UTC 2018
+nodename: ip-172-31-25-42
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /CheckYourSite/CheckYourSite
+detected binary path: /CheckYourSite/CheckYourSite/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /CheckYourSite/CheckYourSite
+your processes number limit is 3900
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 bound to UNIX address /CheckYourSite/CheckYourSite/run/uwsgi.sock fd 6
+Python version: 3.6.6 (default, Oct 11 2018, 14:52:08)  [GCC 5.4.0 20160609]
+PEP 405 virtualenv detected: /CheckYourSite/CheckYourSite
+Set PythonHome to /CheckYourSite/CheckYourSite
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x12034e0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+setting request body buffering size to 204800 bytes
+mapped 1388600 bytes (1356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x12034e0 pid: 7516 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 7516)
+spawned uWSGI worker 1 (pid: 7518, cores: 1)
+spawned uWSGI worker 2 (pid: 7519, cores: 1)
+spawned uWSGI worker 3 (pid: 7520, cores: 1)
+spawned uWSGI worker 4 (pid: 7521, cores: 1)
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket /CheckYourSite/CheckYourSite/run/uwsgi.sock removed.
+*** Starting uWSGI 2.0.17.1 (64bit) on [Thu Oct 11 15:12:22 2018] ***
+compiled with version: 5.4.0 20160609 on 11 October 2018 15:11:45
+os: Linux-4.4.0-1067-aws #77-Ubuntu SMP Mon Aug 27 13:22:03 UTC 2018
+nodename: ip-172-31-25-42
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /CheckYourSite/CheckYourSite
+detected binary path: /CheckYourSite/CheckYourSite/bin/uwsgi
+chdir() to /CheckYourSite/CheckYourSite
+your processes number limit is 3900
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 bound to UNIX address /CheckYourSite/CheckYourSite/run/uwsgi.sock fd 6
+Python version: 3.6.6 (default, Oct 11 2018, 14:52:08)  [GCC 5.4.0 20160609]
+PEP 405 virtualenv detected: /CheckYourSite/CheckYourSite
+Set PythonHome to /CheckYourSite/CheckYourSite
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x18ecee0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+setting request body buffering size to 204800 bytes
+mapped 1388600 bytes (1356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x18ecee0 pid: 11594 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 11594)
+spawned uWSGI worker 1 (pid: 11596, cores: 1)
+spawned uWSGI worker 2 (pid: 11597, cores: 1)
+spawned uWSGI worker 3 (pid: 11598, cores: 1)
+spawned uWSGI worker 4 (pid: 11599, cores: 1)
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket /CheckYourSite/CheckYourSite/run/uwsgi.sock removed.
+*** Starting uWSGI 2.0.17.1 (64bit) on [Thu Oct 11 15:19:03 2018] ***
+compiled with version: 5.4.0 20160609 on 11 October 2018 15:11:45
+os: Linux-4.4.0-1067-aws #77-Ubuntu SMP Mon Aug 27 13:22:03 UTC 2018
+nodename: ip-172-31-25-42
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /CheckYourSite/CheckYourSite
+detected binary path: /CheckYourSite/CheckYourSite/bin/uwsgi
+chdir() to /CheckYourSite/CheckYourSite
+your processes number limit is 3900
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 bound to UNIX address /CheckYourSite/CheckYourSite/run/uwsgi.sock fd 7
+Python version: 3.6.6 (default, Oct 11 2018, 14:52:08)  [GCC 5.4.0 20160609]
+PEP 405 virtualenv detected: /CheckYourSite/CheckYourSite
+Set PythonHome to /CheckYourSite/CheckYourSite
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x191fe90
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+setting request body buffering size to 204800 bytes
+mapped 1388600 bytes (1356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x191fe90 pid: 11961 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 11961)
+spawned uWSGI worker 1 (pid: 11965, cores: 1)
+spawned uWSGI worker 2 (pid: 11966, cores: 1)
+spawned uWSGI worker 3 (pid: 11967, cores: 1)
+spawned uWSGI worker 4 (pid: 11968, cores: 1)
+worker 1 lifetime reached, it was running for 301 second(s)
+worker 2 lifetime reached, it was running for 301 second(s)
+worker 3 lifetime reached, it was running for 301 second(s)
+worker 4 lifetime reached, it was running for 301 second(s)
+Respawned uWSGI worker 1 (new pid: 12471)
+Respawned uWSGI worker 2 (new pid: 12472)
+Respawned uWSGI worker 3 (new pid: 12473)
+Respawned uWSGI worker 4 (new pid: 12474)
+worker 1 lifetime reached, it was running for 301 second(s)
+worker 2 lifetime reached, it was running for 301 second(s)
+worker 3 lifetime reached, it was running for 301 second(s)
+worker 4 lifetime reached, it was running for 301 second(s)
+Respawned uWSGI worker 1 (new pid: 13014)
+Respawned uWSGI worker 2 (new pid: 13015)
+Respawned uWSGI worker 3 (new pid: 13016)
+Respawned uWSGI worker 4 (new pid: 13017)
+worker 1 lifetime reached, it was running for 301 second(s)
+worker 2 lifetime reached, it was running for 301 second(s)
+worker 3 lifetime reached, it was running for 301 second(s)
+worker 4 lifetime reached, it was running for 301 second(s)
+Respawned uWSGI worker 1 (new pid: 13612)
+Respawned uWSGI worker 2 (new pid: 13613)
+Respawned uWSGI worker 3 (new pid: 13614)
+Respawned uWSGI worker 4 (new pid: 13615)
+worker 1 lifetime reached, it was running for 301 second(s)
+worker 2 lifetime reached, it was running for 301 second(s)
+worker 3 lifetime reached, it was running for 301 second(s)
+worker 4 lifetime reached, it was running for 301 second(s)
+Respawned uWSGI worker 1 (new pid: 14406)
+Respawned uWSGI worker 2 (new pid: 14407)
+Respawned uWSGI worker 3 (new pid: 14408)
+Respawned uWSGI worker 4 (new pid: 14409)
+Fri Oct 12 00:41:07 2018 - *** /CheckYourSite/CheckYourSite has been touched... grace them all !!! ***
+...gracefully killing workers...
+Gracefully killing worker 1 (pid: 14406)...
+Gracefully killing worker 2 (pid: 14407)...
+Gracefully killing worker 3 (pid: 14408)...
+Gracefully killing worker 4 (pid: 14409)...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /CheckYourSite/CheckYourSite
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 7 mapped to socket 0 (/CheckYourSite/CheckYourSite/run/uwsgi.sock)
+running /CheckYourSite/CheckYourSite/bin/uwsgi
+[uWSGI] getting INI configuration from /CheckYourSite/CheckYourSite/conf/uwsgi.ini
+*** Starting uWSGI 2.0.17.1 (64bit) on [Fri Oct 12 00:41:08 2018] ***
+compiled with version: 5.4.0 20160609 on 11 October 2018 15:11:45
+os: Linux-4.4.0-1067-aws #77-Ubuntu SMP Mon Aug 27 13:22:03 UTC 2018
+nodename: ip-172-31-25-42
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /CheckYourSite/CheckYourSite
+detected binary path: /CheckYourSite/CheckYourSite/bin/uwsgi
+chdir() to /CheckYourSite/CheckYourSite
+your processes number limit is 3900
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 inherited UNIX address /CheckYourSite/CheckYourSite/run/uwsgi.sock fd 7
+Python version: 3.6.6 (default, Oct 11 2018, 14:52:08)  [GCC 5.4.0 20160609]
+PEP 405 virtualenv detected: /CheckYourSite/CheckYourSite
+Set PythonHome to /CheckYourSite/CheckYourSite
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xe8a700
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+setting request body buffering size to 204800 bytes
+mapped 1388600 bytes (1356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xe8a700 pid: 11961 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 11961)
+sendmsg(): Transport endpoint is already connected [core/notify.c line 39]
+spawned uWSGI worker 1 (pid: 14449, cores: 1)
+spawned uWSGI worker 2 (pid: 14450, cores: 1)
+spawned uWSGI worker 3 (pid: 14451, cores: 1)
+spawned uWSGI worker 4 (pid: 14452, cores: 1)
+Fri Oct 12 00:42:38 2018 - *** /CheckYourSite/CheckYourSite has been touched... grace them all !!! ***
+...gracefully killing workers...
+Gracefully killing worker 1 (pid: 14449)...
+Gracefully killing worker 2 (pid: 14450)...
+Gracefully killing worker 3 (pid: 14451)...
+Gracefully killing worker 4 (pid: 14452)...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /CheckYourSite/CheckYourSite
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 7 mapped to socket 0 (/CheckYourSite/CheckYourSite/run/uwsgi.sock)
+running /CheckYourSite/CheckYourSite/bin/uwsgi
+[uWSGI] getting INI configuration from /CheckYourSite/CheckYourSite/conf/uwsgi.ini
+*** Starting uWSGI 2.0.17.1 (64bit) on [Fri Oct 12 00:42:39 2018] ***
+compiled with version: 5.4.0 20160609 on 11 October 2018 15:11:45
+os: Linux-4.4.0-1067-aws #77-Ubuntu SMP Mon Aug 27 13:22:03 UTC 2018
+nodename: ip-172-31-25-42
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /CheckYourSite/CheckYourSite
+detected binary path: /CheckYourSite/CheckYourSite/bin/uwsgi
+chdir() to /CheckYourSite/CheckYourSite
+your processes number limit is 3900
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 inherited UNIX address /CheckYourSite/CheckYourSite/run/uwsgi.sock fd 7
+Python version: 3.6.6 (default, Oct 11 2018, 14:52:08)  [GCC 5.4.0 20160609]
+PEP 405 virtualenv detected: /CheckYourSite/CheckYourSite
+Set PythonHome to /CheckYourSite/CheckYourSite
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x27df700
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+setting request body buffering size to 204800 bytes
+mapped 1388600 bytes (1356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x27df700 pid: 11961 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 11961)
+sendmsg(): Transport endpoint is already connected [core/notify.c line 39]
+spawned uWSGI worker 1 (pid: 14456, cores: 1)
+spawned uWSGI worker 2 (pid: 14457, cores: 1)
+spawned uWSGI worker 3 (pid: 14458, cores: 1)
+spawned uWSGI worker 4 (pid: 14459, cores: 1)
+Fri Oct 12 00:42:44 2018 - *** /CheckYourSite/CheckYourSite has been touched... grace them all !!! ***
+...gracefully killing workers...
+Gracefully killing worker 4 (pid: 14459)...
+Gracefully killing worker 3 (pid: 14458)...
+Gracefully killing worker 2 (pid: 14457)...
+Gracefully killing worker 1 (pid: 14456)...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /CheckYourSite/CheckYourSite
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 7 mapped to socket 0 (/CheckYourSite/CheckYourSite/run/uwsgi.sock)
+running /CheckYourSite/CheckYourSite/bin/uwsgi
+[uWSGI] getting INI configuration from /CheckYourSite/CheckYourSite/conf/uwsgi.ini
+*** Starting uWSGI 2.0.17.1 (64bit) on [Fri Oct 12 00:42:45 2018] ***
+compiled with version: 5.4.0 20160609 on 11 October 2018 15:11:45
+os: Linux-4.4.0-1067-aws #77-Ubuntu SMP Mon Aug 27 13:22:03 UTC 2018
+nodename: ip-172-31-25-42
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /CheckYourSite/CheckYourSite
+detected binary path: /CheckYourSite/CheckYourSite/bin/uwsgi
+chdir() to /CheckYourSite/CheckYourSite
+your processes number limit is 3900
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 inherited UNIX address /CheckYourSite/CheckYourSite/run/uwsgi.sock fd 7
+Python version: 3.6.6 (default, Oct 11 2018, 14:52:08)  [GCC 5.4.0 20160609]
+PEP 405 virtualenv detected: /CheckYourSite/CheckYourSite
+Set PythonHome to /CheckYourSite/CheckYourSite
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1d3f700
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+setting request body buffering size to 204800 bytes
+mapped 1388600 bytes (1356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1d3f700 pid: 11961 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 11961)
+sendmsg(): Transport endpoint is already connected [core/notify.c line 39]
+spawned uWSGI worker 1 (pid: 14463, cores: 1)
+spawned uWSGI worker 2 (pid: 14464, cores: 1)
+spawned uWSGI worker 3 (pid: 14465, cores: 1)
+spawned uWSGI worker 4 (pid: 14466, cores: 1)
+Fri Oct 12 00:42:51 2018 - *** /CheckYourSite/CheckYourSite has been touched... grace them all !!! ***
+...gracefully killing workers...
+Gracefully killing worker 3 (pid: 14465)...
+Gracefully killing worker 4 (pid: 14466)...
+Gracefully killing worker 2 (pid: 14464)...
+Gracefully killing worker 1 (pid: 14463)...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /CheckYourSite/CheckYourSite
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 7 mapped to socket 0 (/CheckYourSite/CheckYourSite/run/uwsgi.sock)
+running /CheckYourSite/CheckYourSite/bin/uwsgi
+[uWSGI] getting INI configuration from /CheckYourSite/CheckYourSite/conf/uwsgi.ini
+*** Starting uWSGI 2.0.17.1 (64bit) on [Fri Oct 12 00:42:52 2018] ***
+compiled with version: 5.4.0 20160609 on 11 October 2018 15:11:45
+os: Linux-4.4.0-1067-aws #77-Ubuntu SMP Mon Aug 27 13:22:03 UTC 2018
+nodename: ip-172-31-25-42
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /CheckYourSite/CheckYourSite
+detected binary path: /CheckYourSite/CheckYourSite/bin/uwsgi
+chdir() to /CheckYourSite/CheckYourSite
+your processes number limit is 3900
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 inherited UNIX address /CheckYourSite/CheckYourSite/run/uwsgi.sock fd 7
+Python version: 3.6.6 (default, Oct 11 2018, 14:52:08)  [GCC 5.4.0 20160609]
+PEP 405 virtualenv detected: /CheckYourSite/CheckYourSite
+Set PythonHome to /CheckYourSite/CheckYourSite
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x102f700
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+setting request body buffering size to 204800 bytes
+mapped 1388600 bytes (1356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x102f700 pid: 11961 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 11961)
+sendmsg(): Transport endpoint is already connected [core/notify.c line 39]
+spawned uWSGI worker 1 (pid: 14469, cores: 1)
+spawned uWSGI worker 2 (pid: 14470, cores: 1)
+spawned uWSGI worker 3 (pid: 14471, cores: 1)
+spawned uWSGI worker 4 (pid: 14472, cores: 1)
