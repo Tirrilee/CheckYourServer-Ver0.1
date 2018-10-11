@@ -12,10 +12,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
-
-BROKER_URL = 'django://'
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,7 +29,6 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'djcelery',
     'rest_framework',
     'App',
 ]
@@ -138,3 +132,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 IAMPORT_SHOP_ID = "imp25493368"
 IAMPORT_API_KEY = '2441521571623838'
 IAMPORT_API_SECRET = 'RcsJaYHoo9AYmJv6Ubli0E9icAhxWWpO8SxiQeHfoidK1IRWUdeURod4YuBVr1JzTgSKvz0TRdETWvPR'
+
+# CELERY_RESULT_BACKEND = 'django-db'

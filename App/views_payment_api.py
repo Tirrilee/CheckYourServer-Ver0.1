@@ -109,40 +109,12 @@ def PaymentAPI(request):
         site.imp_uid = result["response"]["imp_uid"]
         site.status = result["response"]["status"]
         site.save()
+        ########################################################################
+        # 예약 진행
+
     else:
         context = getContext("error", "아임포트 결제 실패.", {"result": result})
     return HttpResponse(json.dumps(context), content_type="application/json")
-
-# ------------------------------------------------------------------
-# ClassName   : CallbackAPI
-# Description : 결제 후 CallbackAPI
-# ------------------------------------------------------------------
-@api_view(['POST'])
-def CallbackAPI(request):
-    print("콜백 URL 접근")
-    client_ip = getClientIP(request)
-    if not client_ip=="52.78.100.19" or client_ip=="52.78.48.223":
-        context = getContext("error", "잘못된 접근입니다.", {"ip":client_ip})
-        return Response(context)
-
-    imp_uid = json.loads(request.body)["imp_uid"]
-    merchant_uid = json.loads(request.body)["merchant_uid"]
-    status = json.loads(request.body)["status"]
-    # 상태 업데이트
-    try:
-        site = Site.objects.get(merchant_uid=merchant_uid)
-        site.status=status
-        site.save()
-    except:
-        pass
-    # 결제정보 가져오기
-    access_token = getToken()['response']['access_token']
-    payment_data = getPaymentData(imp_uid, access_token)
-    # 예약하기
-    # context = {"payment_data":payment_data}
-    print(str(payment_data))
-    # return HttpResponse(json.dumps(context), content_type="application/json")
-    return Response(payment_data)
 
 # ------------------------------------------------------------------
 # ClassName   : updateSiteAPI
@@ -205,7 +177,38 @@ def getBillingAPI(request):
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 # ------------------------------------------------------------------
-# ClassName   : PaymentAPI
-# Description : 빌링키를 설정하는 API
+# ClassName   : CallbackAPI
+# Description : 결제 후 CallbackAPI
 # ------------------------------------------------------------------
-# def PaymentAPI(request):
+@api_view(['POST'])
+def CallbackAPI(request):
+    print("콜백 URL 접근")
+    # 아임포트 IP만 접속가능하도록
+    client_ip = getClientIP(request)
+    if not client_ip=="52.78.100.19" or client_ip=="52.78.48.223":
+        context = getContext("error", "잘못된 접근입니다.", {"ip":client_ip})
+        return Response(context)
+
+    imp_uid = json.loads(request.body)["imp_uid"]
+    merchant_uid = json.loads(request.body)["merchant_uid"]
+    status = json.loads(request.body)["status"]
+    # 상태 업데이트
+    try:
+        site = Site.objects.get(merchant_uid=merchant_uid)
+        site.status=status
+        site.save()
+    except:
+        pass
+    # 결제정보 가져오기
+    access_token = getToken()['response']['access_token']
+    payment_data = getPaymentData(imp_uid, access_token)
+    # 예약하기
+    if str(payment_data['response']['status'])=="paid":
+        # 결제 확인 후 데이터 생성..
+        print(str(payment_data['response']))
+        # 새로운 예약 결제
+    # 해당 정보로 결제 재시도
+    else:
+        pass
+    # return HttpResponse(json.dumps(context), content_type="application/json")
+    return Response(payment_data)
