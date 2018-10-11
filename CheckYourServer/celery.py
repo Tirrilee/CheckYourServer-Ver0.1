@@ -63,7 +63,7 @@ app.conf.update(
     CELERYBEAT_SCHEDULE = {
         'say_hello-every-seconds': {
             "task": "App.tasks.CheckSite",
-            'schedule': timedelta(seconds=30),
+            'schedule': timedelta(seconds=60),
             'args': ()
         },
     }
