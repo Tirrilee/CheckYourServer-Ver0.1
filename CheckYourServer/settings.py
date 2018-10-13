@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'rest_framework',
     'App',
 ]
@@ -49,6 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # CORS Header 설정
+    'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'CheckYourServer.urls'
@@ -134,3 +138,8 @@ IAMPORT_API_KEY = '2441521571623838'
 IAMPORT_API_SECRET = 'RcsJaYHoo9AYmJv6Ubli0E9icAhxWWpO8SxiQeHfoidK1IRWUdeURod4YuBVr1JzTgSKvz0TRdETWvPR'
 
 # CELERY_RESULT_BACKEND = 'django-db'
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = (
+        'checkyoursite.io',
+        '54.180.87.196',
+)
