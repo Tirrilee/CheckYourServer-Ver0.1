@@ -12,7 +12,7 @@ urlpatterns = [
     path('pay', PaymentAPI, name="pay"),
     path('site-update', updateSiteAPI, name="site_update"),
     path('billing', getBillingAPI, name="billing"),
-    path('iamport-callback/schedule', CallbackAPI, name="billing"),
+    path('iamport-callback/schedule', CallbackAPI, name="callback"),
 
     path('nations/', getNation, name="nation"),
 

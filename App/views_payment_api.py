@@ -22,8 +22,8 @@ amount = 1000
 # Description : 당일날로부터 한달 뒤의 UnixTime 가져오기
 # ------------------------------------------------------------------
 def getUnixTime():
-
-    next_month = datetime.datetime.now() + relativedelta(months=1)
+    # next_month = datetime.datetime.now() + relativedelta(months=1)
+    next_month = datetime.datetime.now() + relativedelta(minutes=1)
     unix_time = time.mktime(next_month.timetuple())
     return unix_time
 
@@ -255,7 +255,7 @@ def CallbackAPI(request):
         order.status=status
         order.save()
     except:
-        pass
+        context = getContext("error", "주문정보가 없습니다.")
     # 결제정보 가져오기
     access_token = getToken()['response']['access_token']
     payment_data = getPaymentData(imp_uid, access_token)
@@ -268,6 +268,6 @@ def CallbackAPI(request):
         context = getContext("success", "아임포트 결제 및 예약 진행.", {"result": result})
     # 해당 정보로 결제 재시도
     else:
-        pass
+        context = getContext("error", "예약 결제 실패.")
     # return HttpResponse(json.dumps(context), content_type="application/json")
     return Response(context)
