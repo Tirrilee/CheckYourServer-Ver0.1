@@ -81,7 +81,7 @@ def CheckSite():
                 if not str(req.status_code) == "200":
                     print("에러발생")
                     print(str(site) + " : 문자전송")
-                    SendSMS(site)
+                    # SendSMS(site)
                 CheckLog.objects.create(
                     site=site,
                     status_code=str(req.status_code),
@@ -93,7 +93,7 @@ def CheckSite():
             except:
                 print("에러발생")
                 print(str(site) + " : 문자전송")
-                SendSMS(site)
+                # SendSMS(site)
                 CheckLog.objects.create(
                     site=site,
                     status_code="900",
