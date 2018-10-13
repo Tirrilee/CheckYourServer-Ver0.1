@@ -39,13 +39,16 @@ def CheckSite():
     # 역참조해서 마지막 Order 테이블에 before_status가 True인 값들만 불러오기
     orders = Order.objects.filter(status="reservation")
 
+    print(str(len(orders)) + " 개의 사이트를 탐색합니다." )
+
     for order in orders:
         site = order.site
+        print(str(site)+" 스케줄러 동작")
         # 1. 사이트 중 에러가 안난 사이트를 가져와서 확인한다.
         # 2. 이중 에러가 날 경우 상태를 바꾸고, 문자를 전송한다.
         # 3. 사이트 중 에러가 이미 난 사이트를 파싱해 확인한다.
         result = CheckLog.objects.filter(site=site).last()
-        print(result)
+        print("로그 필터링 결과 : " + str(result))
         # 검색 결과가 없을 경우 : 처음 등록한 사이트의 경우
         if result==None:
             CheckLog.objects.create(
