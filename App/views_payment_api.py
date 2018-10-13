@@ -55,9 +55,13 @@ def getToken():
 # ClassName   : getReservation
 # Description : 결제예약
 # ------------------------------------------------------------------
-def getReservation(order, customer_uid, unix_time, access_token):
+def getReservation(site, user, unix_time, access_token):
+    order = Order.objects.create(user=user, site=site, status='reservation')
     url = "https://api.iamport.kr/subscribe/payments/schedule"
-    headers = {"Authorization": access_token}
+    headers = {
+        "Authorization": access_token,
+        "Content-Type": "application/json"
+    }
     schedules = [
         {
             'merchant_uid': str(order.merchant_uid),
@@ -69,10 +73,11 @@ def getReservation(order, customer_uid, unix_time, access_token):
         }
     ]
     data = {
-        'customer_uid': customer_uid,
+        'customer_uid': str(user.userprofile.customer_uid),
         'schedules': schedules
     }
-    r = requests.post(url=url, headers=headers, data=data)
+    print(data)
+    r = requests.post(url=url, headers=headers, data=json.dumps(data))
     return r.json()
 
 # ------------------------------------------------------------------
@@ -83,13 +88,14 @@ def getPayment(order, customer_uid, access_token):
     url = "https://api.iamport.kr/subscribe/payments/again"
     headers = {"Authorization": access_token}
     data = {
-        'customer_uid': customer_uid,
+        'customer_uid': str(customer_uid),
         'merchant_uid': str(order.merchant_uid),
         'amount': amount,
         'name': 'CheckYourSite 월간 사용료 정기결제',
         'buyer_email': str(order.user),
         'buyer_tel': str(order.user.userprofile.phone)
     }
+    print(type(data))
     r = requests.post(url=url, headers=headers, data=data)
     return r.json()
 
@@ -112,10 +118,14 @@ def PaymentAPI(request):
     name = request.POST.get('name', None)
     url = request.POST.get('url', None)
     user = request.user
+
+    # 사이트가 이미 등록되어 있을 경우
+    # 결제 상태 확인 후 결제가 안되어 있을 경우 결제 및 예약 진행 or 이미 결제 된 상품 request
     try:
         site = Site.objects.get(user=user, url=url)
         site.name = name
         site.save()
+    # 사이트가 등록이 안되어 있을 경우 생성
     except:
         try:
             site = Site.objects.create(user=user, name=name, url=url)
@@ -125,12 +135,26 @@ def PaymentAPI(request):
     # 토큰 발급
     access_token = getToken()['response']['access_token']
     # 결제 진행
-    # 마지막 결제 상태가 "결제완료"가 아닐 경우 해당 결제를 가져와서 결제 진행
-    last_order = Order.objects.filter(user=user, site=site).first()
-    if last_order.status!='paid':
-        order = last_order
+    # 마지막 결제 상태가 "예약상태"가 아닐 경우 해당 결제를 가져와서 결제 진행
+    last_order = Order.objects.filter(user=user, site=site).last()
+    if last_order!=None:
+        print("주문 정보가 있습니다.")
+        # 결제 예약 상태 일 경우 에러 return
+        if last_order.status=='reservation':
+            context = getContext('error', "이미 결제예약이 등록된 주문입니다.")
+            return HttpResponse(json.dumps(context), content_type="application/json")
+        # 결제 상태일 경우..?
+        elif last_order.status=='paid':
+            print("이미 결제된 상품입니다. 새로운 주문을 생성합니다.")
+            order = Order.objects.create(user=user, site=site)
+        # 그 외...
+        else:
+            print("미결제 주문이 있습니다.")
+            order = last_order
     else:
+        print("주문 정보가 없습니다. 새로운 주문을 생성합니다.")
         order = Order.objects.create(user=user, site=site)
+
 
     result = getPayment(order, user.userprofile.customer_uid, access_token)
     if result["code"]==0:
@@ -141,8 +165,9 @@ def PaymentAPI(request):
         ########################################################################
         # 예약 진행
         # site, customer_uid, unix_time, access_token
-
-        result = getReservation(order, user.userprofile.customer_uid, int(getUnixTime()), access_token)
+        # 예약 객체 생성
+        result = getReservation(site, user, int(getUnixTime()), access_token)
+        print(result)
         context = getContext("success", "아임포트 결제 및 예약 진행.", {"result": result})
     else:
         context = getContext("error", "아임포트 결제 실패.", {"result": result})
@@ -238,10 +263,11 @@ def CallbackAPI(request):
     if str(payment_data['response']['status'])=="paid":
         # 결제 확인 후 데이터 생성..
         print(str(payment_data['response']))
-        # 주문 객체 생성
         # 새로운 예약 결제
+        result = getReservation(order.site, order.user, int(getUnixTime()), access_token)
+        context = getContext("success", "아임포트 결제 및 예약 진행.", {"result": result})
     # 해당 정보로 결제 재시도
     else:
         pass
     # return HttpResponse(json.dumps(context), content_type="application/json")
-    return Response(payment_data)
+    return Response(context)

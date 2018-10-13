@@ -66,6 +66,7 @@ class Order(models.Model):
         ('paid', '결제완료'),
         ('cancelled', '결제취소'),
         ('failed', '결제실패'),
+        ('reservation', '결제예약')
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="유저")
     site = models.ForeignKey(Site, on_delete=models.CASCADE, verbose_name="사이트")
