@@ -256,6 +256,7 @@ def CallbackAPI(request):
         order.save()
     except:
         context = getContext("error", "주문정보가 없습니다.")
+        return Response(context)
     # 결제정보 가져오기
     access_token = getToken()['response']['access_token']
     payment_data = getPaymentData(imp_uid, access_token)
@@ -269,5 +270,4 @@ def CallbackAPI(request):
     # 해당 정보로 결제 재시도
     else:
         context = getContext("error", "예약 결제 실패.")
-    # return HttpResponse(json.dumps(context), content_type="application/json")
     return Response(context)

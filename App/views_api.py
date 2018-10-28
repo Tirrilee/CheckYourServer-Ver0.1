@@ -80,8 +80,7 @@ def SMSValidate(request):
 def SigninAPI(request):
     email = request.POST.get('email', None)
     password = request.POST.get('password', None)
-    print(email)
-    print(password)
+
     if email=="" or password=="":
         context = getContext("error", "Fields are required.")
     else:
