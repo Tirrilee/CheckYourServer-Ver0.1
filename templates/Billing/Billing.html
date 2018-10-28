@@ -86,13 +86,14 @@
 
     var birth = $('#Billing input[name=birth]').val()
     
-		console.log(card_number)
-		console.log(expiry)
-    console.log(pwd_2digit)
+		// console.log(card_number)
+		// console.log(expiry)
+  //   console.log(pwd_2digit)
     
 		$.ajax({
       type: "POST",
       url: "{% url 'API:billing' %}",
+      contentType: "application/json",
       data: {
 				'card_number': card_number,
 				'expiry': expiry,
