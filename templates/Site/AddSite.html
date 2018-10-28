@@ -48,7 +48,6 @@
 		$.ajax({
       type: "POST",
       url: "{% url 'API:pay' %}",
-      contentType: "application/json",
       data: {
 				'name': name,
 				'url': url,
