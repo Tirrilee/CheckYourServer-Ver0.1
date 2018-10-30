@@ -242,7 +242,7 @@ def CallbackAPI(request):
     print("콜백 URL 접근")
     # 아임포트 IP만 접속가능하도록
     client_ip = getClientIP(request)
-    if not client_ip=="52.78.100.19" or client_ip=="52.78.48.223":
+    if not client_ip=="52.78.100.19" or not client_ip=="52.78.48.223":
         context = getContext("error", "잘못된 접근입니다.", {"ip":client_ip})
         return Response(context)
 
